@@ -12,6 +12,7 @@
     <li>Pizza - R$ 30 <button onclick="adicionarAoCarrinho('Pizza', 30)">Adicionar</button></li>
     <li>Refrigerante - R$ 10 <button onclick="adicionarAoCarrinho('Refrigerante', 10)">Adicionar</button></li>
     <li>Salada - R$ 15 <button onclick="adicionarAoCarrinho('Salada', 15)">Adicionar</button></li>
+    <li>Paçoca - R$ 8 <button onclick="adicionarAoCarrinho('Paçoca', 8)">Adicionar</button></li>
 </ul>
 <a href="/checkout">Finalizar Pedido</a>
 
