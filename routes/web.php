@@ -31,6 +31,11 @@ Route::get('/checkout', function () {
     return view('checkout');
 });
 
+//rota página admin
+Route::get('/admin', function () {
+    return view('admin');
+});
+
 //rotas sobre a pagina de pedidos
 Route::post('/pedido', [PedidoController::class, 'store']);
 

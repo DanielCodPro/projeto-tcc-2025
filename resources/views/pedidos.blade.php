@@ -36,6 +36,7 @@
         <button type="submit">Atualizar</button>
     </form>
 @endforeach
+<button onclick="window.location.href='{{ url('admin') }}'">Voltar</button>
 </body>
 </html>
 
