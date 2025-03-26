@@ -13,7 +13,7 @@
     <label>Email:</label> <input type="email" name="email">
     <label>Mesa:</label> <input type="text" name="mesa" required>
     <input type="hidden" name="itens" id="itens_pedido">
-    <button type="submit">Enviar Pedido</button>
+    <button type="submit" onclick="window.location.href='{{ url('pagamento') }}'">Enviar Pedido</button>
 </form>
 
 

@@ -5,6 +5,8 @@ use App\Http\Controllers\PedidoController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Pedido;
+use App\Http\Controllers\PagamentoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,17 @@ use App\Models\Pedido;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//rotas da página de pagamentos
+Route::get('/', function () {
+    return view('/pagamento');
+});
+
+Route::get('/checkout', [PagamentoController::class, 'checkout']);
+Route::get('/pagamento/sucesso', [PagamentoController::class, 'sucesso']);
+Route::get('/pagamento/falha', [PagamentoController::class, 'falha']);
+Route::get('/pagamento/pendente', [PagamentoController::class, 'pendente']);
+
+
 
 //Rota para o menu
 Route::get('/', function () {
@@ -54,16 +67,6 @@ Route::post('/pedidos/{id}/status', function ($id, Request $request) {
     }
 
     return back();
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
