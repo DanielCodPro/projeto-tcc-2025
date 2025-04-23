@@ -24,7 +24,7 @@ class PedidoController extends Controller
         'itens_pedido' => json_encode($itens), // Agora temos certeza que é JSON válido
     ]);
 
-    return redirect('/home');
+    return redirect('/pagamento');
 }
 }
 
