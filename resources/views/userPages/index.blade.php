@@ -5,6 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casa dos Salgados</title>
+
+<!--SEO e meta tags ajudam os motores de busca (como o Google) a entender melhor o conteúdo do seu site, aqui to adicinando as mais essenciais-->
+    <!-- Meta descrição (aparece no Google) -->
+    <meta name="description"
+        content="Deliciosos salgados feitos com carinho! Venha conhecer a Casa dos Salgados, destaque em Mogi Mirim. Drive-thru e atendimento especial!">
+
+    <!-- Meta palavras-chave (menos usada hoje, mas pode incluir) -->
+    <meta name="keywords" content="salgados, salgadaria, Mogi Mirim, comida rápida, festa, delivery, drive-thru">
+
+    <!-- Meta autor -->
+    <meta name="author" content="Casa dos Salgados">
+
+    <!-- Define o idioma para SEO -->
+    <meta name="language" content="pt-BR">
+
+    <!-- Open Graph (Facebook e redes sociais) -->
+    <meta property="og:title" content="Casa dos Salgados - Os Melhores Salgados de Mogi Mirim">
+    <meta property="og:description"
+        content="Experimente nossos salgados irresistíveis. Atendimento de qualidade e drive-thru.">
+    <meta property="og:image" content="{{ asset('images/logo.png') }}">
+    <meta property="og:url" content="https://www.casadossalgados.com.br">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Casa dos Salgados">
+    <meta name="twitter:description" content="A melhor salgadaria da região de Mogi Mirim!">
+    <meta name="twitter:image" content="{{ asset('images/logo.png') }}" >
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
@@ -66,7 +94,7 @@
         <div class="content">
             <div class="titulo">
                 <span class="color-laranja text-title">Ofertas</span>
-                <h2 class="color-cinza-1 text-md">Nossas Serviços</h2>
+                <h2 class="color-cinza-1 text-md">Nossos Serviços</h2>
             </div>
             <div class="down">
                 <div class="box">
@@ -77,12 +105,12 @@
                 <div class="box">
                     <i class="fa-solid fa-burger text-gd color-laranja"></i>
                     <h2> Temos uma variedade de salgados para todos os gostos!</h2>
-                    <p>Esperimente nosso típico salgadinho alho!</p>
+                    <p>Experimente nosso típico salgadinho de alho!</p>
                 </div>
                 <div class="box">
                     <i class="fa fa-motorcycle text-gd color-laranja" aria-hidden="true"></i>
                     <h2>Também oferecemos serviço drive-thru</h2>
-                    <p>consuma nossos salgados no aconchego da sua casa!</p>
+                    <p>Consuma nossos salgados no conforto da sua casa!</p>
                 </div>
             </div>
         </div>
@@ -92,26 +120,27 @@
     <footer id="contato">
         <div class="container">
             <img src="images/logo.png" alt="">
-            <p class="text-pq">Copyright 2025 <span class="color-laranja">Casa dos Salgados</span> All Rights Reserved</p classs="text-pq">
+            <p class="text-pq">Copyright 2025 <span class="color-laranja">Casa dos Salgados</span> All Rights Reserved
+            </p>
             <p>Tel: (19)99635-9428</p>
         </div>
     </footer>
-        <script>
+    <script>
 
-            //Botão para voltar ao topo
-            var btn = document.querySelector("#back-to-top");
-            window.onscroll = function () {
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    btn.style.display = "block";
-                } else {
-                    btn.style.display = "none";
-                }
-            };
-            btn.addEventListener("click", function () {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            });
-        </script>
+        //Botão para voltar ao topo
+        var btn = document.querySelector("#back-to-top");
+        window.onscroll = function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+        btn.addEventListener("click", function () {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        });
+    </script>
 </body>
 
 </html>
