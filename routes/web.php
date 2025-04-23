@@ -5,8 +5,9 @@ use App\Http\Controllers\PedidoController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Models\Pedido;
+use App\Http\Controllers\MenuController;
 use App\Http\Controllers\PagamentoController;
-
+use App\Http\Controllers\ProdutoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,55 +19,68 @@ use App\Http\Controllers\PagamentoController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-//rotas da página de pagamentos
+// Redireciona para a página principal ao iniciar
 Route::get('/', function () {
-    return view('/pagamento');
+    return redirect('/index');
 });
 
-Route::get('/checkout', [PagamentoController::class, 'checkout']);
+// Rotas para usuário (userPages) -------
+Route::get('/index', function () {
+    return view('userPages.index');
+})->name('user.index');
+
+Route::get('/menu', function () {
+    return view('userPages.menu');
+})->name('user.menu');
+
+Route::get('/menu', [MenuController::class, 'index']);//Rota sobre a função da página de menu
+
+Route::get('/pagamento', function () {
+    return view('userPages.pagamento');
+})->name('user.pagamento');
+
+Route::get('/checkout', function () {
+    return view('userPages.checkout');
+})->name('user.checkout');
+
+// Rotas para o controller de pagamento
+Route::get('/pagamento/checkout', [PagamentoController::class, 'checkout']);
 Route::get('/pagamento/sucesso', [PagamentoController::class, 'sucesso']);
 Route::get('/pagamento/falha', [PagamentoController::class, 'falha']);
 Route::get('/pagamento/pendente', [PagamentoController::class, 'pendente']);
 
-
-
-//Rota para o menu
-Route::get('/', function () {
-    return redirect('/menu'); // Redireciona automaticamente para a página do menu toda vez que rodar o comando "php artisan serve"
-});
-
-Route::get('/menu', function () {
-    return view('menu'); 
-});
-
-//Rota para a pagina de confirmacao
-Route::get('/checkout', function () {
-    return view('checkout');
-});
-
-//rota página admin
+// Rotas para administrador (adminPages) -------
 Route::get('/admin', function () {
-    return view('admin');
-});
-
-//rotas sobre a pagina de pedidos
-Route::post('/pedido', [PedidoController::class, 'store']);
+    return view('adminPages.admin');
+})->name('admin');
 
 Route::get('/pedidos', function () {
-    return view('pedidos', ['pedidos' => Pedido::all()]);
-});
+    return view('adminPages.pedidos', ['pedidos' => Pedido::all()]);
+})->name('admin.pedidos');
+
+// Ações com pedidos
+Route::post('/pedido', [PedidoController::class, 'store']);
+
 Route::post('/pedidos/{id}/status', function ($id, Request $request) {
     $status = $request->input('status');
 
     if ($status === 'entregue') {
-        // Se o pedido for entregue, exclui do banco de dados
         Pedido::where('id', $id)->delete();
     } else {
-        // Apenas atualiza o status normalmente
         Pedido::where('id', $id)->update(['status' => $status]);
     }
 
     return back();
 });
+
+Route::prefix('/adminPages/produtos')->group(function () {
+    Route::get('/', [ProdutoController::class, 'index'])->name('produtos.index');
+    Route::get('/create', [ProdutoController::class, 'create'])->name('produtos.create');
+    Route::post('/', [ProdutoController::class, 'store'])->name('produtos.store');
+    Route::get('/{id}/edit', [ProdutoController::class, 'edit'])->name('produtos.edit');
+    Route::put('/{id}', [ProdutoController::class, 'update'])->name('produtos.update');
+    Route::delete('/{id}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
+});
+
 
 require __DIR__.'/auth.php';
