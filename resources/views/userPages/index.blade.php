@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casa dos Salgados</title>
 
-<!--SEO e meta tags ajudam os motores de busca (como o Google) a entender melhor o conteúdo do seu site, aqui to adicinando as mais essenciais-->
+    <!--SEO e meta tags ajudam os motores de busca (como o Google) a entender melhor o conteúdo do seu site, aqui to adicinando as mais essenciais-->
     <!-- Meta descrição (aparece no Google) -->
     <meta name="description"
         content="Deliciosos salgados feitos com carinho! Venha conhecer a Casa dos Salgados, destaque em Mogi Mirim. Drive-thru e atendimento especial!">
@@ -32,7 +32,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Casa dos Salgados">
     <meta name="twitter:description" content="A melhor salgadaria da região de Mogi Mirim!">
-    <meta name="twitter:image" content="{{ asset('images/logo.png') }}" >
+    <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
@@ -80,7 +80,10 @@
                     <p class="text-md color-cinza-1">A Casa dos Salgados é uma empresa familiar que começou com a paixão
                         por salgados. Oferecemos diversos salgados excepcionais e uma experiência única para todos os
                         clientes! Você vai amar!</p>
-                    <button>Saiba Mais</button>
+                    <a href="{{ url('/Saiba') }}">
+                        <button>Saiba mais</button>
+                    </a>
+
                 </div>
                 <div class="right">
                     <img src="images/5.jpg" alt="">

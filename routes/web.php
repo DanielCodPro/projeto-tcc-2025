@@ -24,6 +24,7 @@ Route::get('/', function () {
     return redirect('/index');
 });
 
+
 // Rotas para usuário (userPages) -------
 Route::get('/index', function () {
     return view('userPages.index');
@@ -42,7 +43,12 @@ Route::get('/pagamento', function () {
 Route::get('/checkout', function () {
     return view('userPages.checkout');
 })->name('user.checkout');
-
+Route::get('/Saiba', function () {
+    return view('userPages.saiba');
+});
+Route::get('/formatacao', function () {
+    return view('public.formatacao');
+});
 // Rotas para o controller de pagamento
 Route::get('/pagamento/checkout', [PagamentoController::class, 'checkout']);
 Route::get('/pagamento/sucesso', [PagamentoController::class, 'sucesso']);

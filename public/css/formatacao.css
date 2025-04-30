@@ -25,6 +25,20 @@ html, body{
     width: 100%;
     min-height: 100vh;
 }
+.sobre2{
+margin-top: 2%;
+margin-left: 50%;
+padding: 0%;
+}
+
+.titles{
+    text-align: right;
+    display: flex;
+    margin-left: 50%;
+    margin-top: 5%;
+    margin-bottom: 0%;
+    
+}
 .bg{
     background: url(../images/bg.jpg) no-repeat;
     background-size: cover;
@@ -39,7 +53,10 @@ html, body{
     justify-content: center;
     min-height: 100vh;
 }
-
+.container2{
+  
+    margin-top: 6%;
+}
 
 /*Menu*/
 
