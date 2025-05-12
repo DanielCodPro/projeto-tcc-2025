@@ -7,7 +7,7 @@
 }
 
 /*Mini Framework*/
-html, body{
+html body{
     font-family: 'Arial', sans-serif;
     font-size: 16px;
     line-height: 1.5;
@@ -16,9 +16,19 @@ html, body{
     background: url(../images/bg.jpg) no-repeat;
     background-size: cover;
     height: auto;
+    padding: 0%;
+    margin: 0%;
 }
 .text-mi{
     font-size: 27px;
+}
+.espaco1{
+
+    margin-bottom: 20%; 
+}
+.espaco2{
+  margin-left: 30%; 
+  margin-bottom: 30%;
 }
 
 .max-width{
@@ -26,11 +36,15 @@ html, body{
     min-height: 100vh;
 }
 .sobre2{
-margin-top: 2%;
-margin-left: 50%;
+margin-top: 5%;
+margin-left: 15%;
 padding: 0%;
+margin-right: 5%;
 }
-
+.texto{
+   margin-top: 40%;
+    margin-left: 33%;
+}
 .titles{
     text-align: right;
     display: flex;
@@ -57,9 +71,21 @@ padding: 0%;
   
     margin-top: 6%;
 }
-
-/*Menu*/
-
+.fritos{
+    margin-top: 7%;
+}
+.logo-fritos{margin-left: 35%;
+       font-size: 40px;
+   font-weight: 600;
+}
+.salgados{  margin-top: 20%;
+  margin-bottom: 80%;}
+.espaco-nosS{
+    margin-top: 0%;
+}
+.meio{  margin-top: 29%;
+  margin-bottom: 55%;}
+  
 .menu{
     display: flex;
     align-items: center;
@@ -82,14 +108,180 @@ padding: 0%;
     border-radius: 0 0 50px 50px;
     z-index: 9;
 }
-
-/*Tamanho das fontes*/  
-.text-gd{
-   font-size: 64px;
+.local{
+    background: url(../images/local.png) no-repeat;
+    background-size: cover;
+    margin-top: auto;
+    width: 1250px;
+    height: 650px;
+    position: relative;
+    z-index: 9;
+     z-index: 1;
+    border-radius: 5px 5px 20px 20px;
 }
 
+.salgadaria{
+    background: url(../images/vs1.png) no-repeat;
+    background-size: cover;
+    width: 430px; /* largura da imagem */
+    height: 330px; /* altura da imagem */
+  
+}
+.kuat{
+    background: url(../images/vs2.avif) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+  margin-top: 13%;
+}
+.conjunto{
+    background: url(../images/Salgados/conjunto.jpeg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+  margin-top: 13%;
+}
+.explicacao{
+      margin-top: 16%;
+}
+.coxinha{
+    background: url(../images/Salgados/coxinha.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+
+}
+.bolinha{
+    background: url(../images/Salgados/bolinha-de-queijo.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+
+}
+.presunto{
+    background: url(../images/Salgados/presunto.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+ 
+}
+.alho{
+    background: url(../images/Salgados/alho.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+}
+.milho{
+    background: url(../images/Salgados/milho.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+}
+.calabresa{
+    background: url(../images/Salgados/calabresa.png) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+}
+.salsicha{
+    background: url(../images/Salgados/salsicha.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+}
+.croquete{
+    background: url(../images/Salgados/croquete.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+}
+.kibe{
+    background: url(../images/Salgados/kibe.jpeg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+}
+.letrero{margin-top: 50;}
+.assadao{margin-bottom: 20%;}
+
+.pastel{
+    background: url(../images/pastel.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+ margin-left: 15%;
+}
+
+.jardineira{
+    background: url(../images/assado/jardineira.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+
+}
+.misto{
+    background: url(../images/assado/mistao.jpeg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+
+}
+.hamburg{
+    background: url(../images/assado/Hamburguer.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+
+}
+.carne{
+    background: url(../images/assado/carne.jpeg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+
+}
+.frango{
+    background: url(../images/assado/frango.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+
+}
+.calabresa{
+    background: url(../images/assado/calabresa.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+
+}
+.salsicha{
+    background: url(../images/assado/salsicha.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+
+}
+.palmito{
+    background: url(../images/assado/palmito.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+
+}
+.brocolis{
+    background: url(../images/assado/brocolis.jpg) no-repeat;
+    background-size: cover;
+    width: 450px; /* largura da imagem */
+    height: 350px; /* altura da imagem */
+
+}
+
+
+
+
 .text-md{
-   font-size: 36px;
+   font-size: 26px;
+   margin-top: 5%;
 }
 
 .text-pq{
@@ -97,7 +289,7 @@ padding: 0%;
 }
 
 .text-title{
-   font-size: 20px;
+   font-size: 30px;
    font-weight: 600;
 }
 
@@ -199,6 +391,7 @@ button:hover{
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+   
 }
 
 /*Box*/
