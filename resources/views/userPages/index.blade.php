@@ -1,18 +1,29 @@
+@php
+    use App\Models\Usuario;
+
+    $usuario = null;
+    if (session()->has('usuario_id')) {
+        $usuario = Usuario::find(session('usuario_id'));
+    }
+
+    
+@endphp
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="bg">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casa dos Salgados</title>
 
-<!--SEO e meta tags ajudam os motores de busca (como o Google) a entender melhor o conteúdo do seu site, aqui to adicinando as mais essenciais-->
+    <!--SEO e meta tags ajudam os motores de busca (como o Google) a entender melhor o conteúdo do seu site, aqui to adicinando as mais essenciais-->
     <!-- Meta descrição (aparece no Google) -->
     <meta name="description"
-        content="Deliciosos salgados feitos com carinho! Venha conhecer a Casa dos Salgados, destaque em Mogi Mirim. Drive-thru e atendimento especial!">
+        content="Deliciosos salgados feitos com carinho! Venha conhecer a Casa dos Salgados, destaque em Mogi Mirim. Delivery e atendimento especial!">
 
     <!-- Meta palavras-chave (menos usada hoje, mas pode incluir) -->
-    <meta name="keywords" content="salgados, salgadaria, Mogi Mirim, comida rápida, festa, delivery, drive-thru">
+    <meta name="keywords" content="salgados, salgadaria, Mogi Mirim, comida rápida, festa, delivery">
 
     <!-- Meta autor -->
     <meta name="author" content="Casa dos Salgados">
@@ -22,8 +33,7 @@
 
     <!-- Open Graph (Facebook e redes sociais) -->
     <meta property="og:title" content="Casa dos Salgados - Os Melhores Salgados de Mogi Mirim">
-    <meta property="og:description"
-        content="Experimente nossos salgados irresistíveis. Atendimento de qualidade e drive-thru.">
+    <meta property="og:description" content="Experimente nossos salgados irresistíveis. Atendimento de qualidade.">
     <meta property="og:image" content="{{ asset('images/logo.png') }}">
     <meta property="og:url" content="https://www.casadossalgados.com.br">
     <meta property="og:type" content="website">
@@ -32,7 +42,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Casa dos Salgados">
     <meta name="twitter:description" content="A melhor salgadaria da região de Mogi Mirim!">
-    <meta name="twitter:image" content="{{ asset('images/logo.png') }}" >
+    <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
@@ -46,6 +56,21 @@
         <div class="container">
             <div class="menu">
                 <div class="logo" id="logo"></div>
+                <div class="user">
+                <i class="fa-solid fa-user"></i>
+                    @if ($usuario)
+                        <p class="text-gray-700">{{ $usuario->nome }}</p>
+                    @else
+                        <p class="text-gray-700">Visitante</p>
+                    @endif
+    
+                    <div class="user-menu">
+                        <ul>
+                            <li><a href="{{ route('logout') }}">Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="desktop-menu">
                     <ul>
                         <li><a href="#home">Home</a></li>
@@ -109,7 +134,7 @@
                 </div>
                 <div class="box">
                     <i class="fa fa-motorcycle text-gd color-laranja" aria-hidden="true"></i>
-                    <h2>Também oferecemos serviço drive-thru</h2>
+                    <h2>Também oferecemos serviço delivery!</h2>
                     <p>Consuma nossos salgados no conforto da sua casa!</p>
                 </div>
             </div>

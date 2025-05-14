@@ -5,14 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
     <script>
+        const senhaCorreta = '1234';
+
         function validarSenha() {
             const senha = document.getElementById('senha').value;
-            const senhaCorreta = 'kauangostoso'; 
             if (senha === senhaCorreta) {
-                document.getElementById('conteudo').style.display = 'block';
-                document.getElementById('form-senha').style.display = 'none';
+                sessionStorage.setItem('admin_autenticado', 'true');
+                mostrarConteudo();
             } else {
                 alert('Senha incorreta!');
+            }
+        }
+
+        function mostrarConteudo() {
+            document.getElementById('conteudo').style.display = 'block';
+            document.getElementById('form-senha').style.display = 'none';
+        }
+
+        window.onload = function () {
+            if (sessionStorage.getItem('admin_autenticado') === 'true') {
+                mostrarConteudo();
             }
         }
     </script>
