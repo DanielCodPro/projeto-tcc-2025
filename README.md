@@ -65,7 +65,37 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+---Informações importantes--
+Passo a Passo da clonagem do repositório á a sua preparação no ambiente:
+
+Confirme se já tem uma conta no github e conversou comigo(kauan) para que eu te a adiciona-se como colaborador
+No vscode, ao entrar, clique no botão clonar repositório( na aba de explorador ou de Controle de código-fonte)
+Clique em "Clonar de GitHub"
+Clique na opção de repositório que começa com o meu nome (kauanmmartins)
+Escolha seu local de preferência para deixar o arquivo(pasta) do projeto em seu computador
+pronto, agora vc já clonou o repositório devidamente.
+
+Com o repositório clonado, verifique se já tem os seguintes requisitos em sua máquina:
+ php - como baixar(versão para windows: https://www.youtube.com/watch?v=gQ-P0yMBE9U
+ node.js e npm - baixando o node.js vc também baixa o npm - como baixar: https://www.youtube.com/watch?v=DbJlrkW63XU
+ composer - como baixar: https://www.youtube.com/watch?v=Dimtx-pQPuA
+Se após instalar, se quiser verificar se tá tudo certo, abre o prompt de comando e digita o código:
+sua_instalação -v
+Exemplo: composer -v
+
+tendo tudo baixado certinho, no vscode abra o terminal e digite:
+
+# 📦 Instala as dependências PHP
+composer install
+
+# 📦 Instala as dependências JS/CSS (Vite, Mix, etc)
+npm install
+
+pronto, espere baixar tudo e pode mexer tranquilamente
+
+---Utilizações---
 Código arquivo .env: 
+
 APP_NAME=Laravel
 APP_ENV=local
 APP_KEY=base64:IiyWSPmgDOBRjboLfxER6vbh1MQmRArcm31yGtQssIM=
@@ -81,7 +111,7 @@ DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=salgadaria_db
 DB_USERNAME=root
-DB_PASSWORD=RDF_SQL0806
+DB_PASSWORD=sua_senha do mySQL_Workbench
 
 BROADCAST_DRIVER=log
 CACHE_DRIVER=file
@@ -125,4 +155,30 @@ VITE_PUSHER_HOST="${PUSHER_HOST}"
 VITE_PUSHER_PORT="${PUSHER_PORT}"
 VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
 VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+
+---Comandos git e do laravel---
+# 🔄 Atualizar seu repositório local com a branch principal (por exemplo, main)
+git pull origin main
+
+# 📡 Buscar atualizações do repositório remoto (sem aplicar)
+git fetch
+
+# 🔁 Trocar de branch
+git checkout nome-da-branch
+
+# 🌿 Criar e trocar para uma nova branch
+git checkout -b nova-branch
+
+# 🔄 Atualizar e migrar banco de dados (Laravel)
+php artisan migrate
+
+# 🧨 Desfazer todas as migrations (deleta as tabelas criadas)
+php artisan migrate:reset
+
+# ▶️ Inicia o projeto no navegador
+php artisan serve
+
+
+
 
