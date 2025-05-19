@@ -6,14 +6,26 @@
     <title>Admin</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        const senhaCorreta = '1234';
+
         function validarSenha() {
             const senha = document.getElementById('senha').value;
-            const senhaCorreta = 'kauangostoso'; 
             if (senha === senhaCorreta) {
-                document.getElementById('conteudo').style.display = 'block';
-                document.getElementById('form-senha').style.display = 'none';
+                sessionStorage.setItem('admin_autenticado', 'true');
+                mostrarConteudo();
             } else {
                 alert('Senha incorreta!');
+            }
+        }
+
+        function mostrarConteudo() {
+            document.getElementById('conteudo').style.display = 'block';
+            document.getElementById('form-senha').style.display = 'none';
+        }
+
+        window.onload = function () {
+            if (sessionStorage.getItem('admin_autenticado') === 'true') {
+                mostrarConteudo();
             }
         }
     </script>
@@ -35,8 +47,11 @@
     </div>
 </body>
 </html>
+<<<<<<< HEAD
 <!--
     Este código é um exemplo de uma página de login para funcionários de um restaurante.
     O usuário deve inserir uma senha para acessar o conteúdo restrito.
     Se a senha estiver correta, o conteúdo é exibido.
     Caso contrário, um alerta informa que a senha está incorreta.
+=======
+>>>>>>> 36bd991f81b5940443d60d151933eea6f0083c46

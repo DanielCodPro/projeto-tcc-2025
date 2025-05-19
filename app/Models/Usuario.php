@@ -4,11 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Usuario;
 
-class Pedido extends Model
+class Usuario extends Model
 {
     use HasFactory;
-    protected $fillable = ['nome_cliente', 'email_cliente', 'mesa', 'itens_pedido', 'status'];
-}
+    protected $fillable = ['nome', 'email', 'google_id'];
 
+}
