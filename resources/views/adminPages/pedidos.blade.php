@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <body class="bg-gradient-to-r from-gray-900 via-black to-gray-900 flex items-center justify-center min-h-screen">
     <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-orange-500 text-center w-full max-w-2xl">
         <h1 class="text-2xl font-bold text-orange-500 mb-4">Pedidos</h1>
@@ -60,6 +61,24 @@
                     $itens = json_decode($pedido->itens_pedido, true);
                 @endphp
 
+=======
+
+<body>
+    <h1>Pedidos</h1>
+    @foreach ($pedidos as $pedido)
+        <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
+            <h3>Pedido #{{ $pedido->id }}</h3>
+            <p><strong>Cliente:</strong> {{ $pedido->nome_cliente }}</p>
+            <p><strong>Mesa:</strong> {{ $pedido->mesa }}</p>
+            <p><strong>Status:</strong> {{ ucfirst($pedido->status) }}</p>
+
+            <p><strong>Itens:</strong></p>
+            <ul>
+                @php
+                    $itens = json_decode($pedido->itens_pedido, true);
+                @endphp
+
+>>>>>>> 36bd991f81b5940443d60d151933eea6f0083c46
                 @if (is_array($itens))
                     @foreach ($itens as $item)
                         <li>{{ $item['nome'] }} - R$ {{ number_format($item['preco'], 2, ',', '.') }}</li>
@@ -84,6 +103,9 @@
     @endforeach
     <button onclick="window.location.href='{{ url('admin') }}'"
         style="margin-top: 20px; padding: 10px 20px;">Voltar</button>
+<<<<<<< HEAD
+>>>>>>> 36bd991f81b5940443d60d151933eea6f0083c46
+=======
 >>>>>>> 36bd991f81b5940443d60d151933eea6f0083c46
 </body>
 
@@ -91,5 +113,9 @@
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
+<!--Nesta página o funcionário consegue gerenciar os pedidos dos clientes-->
+>>>>>>> 36bd991f81b5940443d60d151933eea6f0083c46
+=======
 <!--Nesta página o funcionário consegue gerenciar os pedidos dos clientes-->
 >>>>>>> 36bd991f81b5940443d60d151933eea6f0083c46

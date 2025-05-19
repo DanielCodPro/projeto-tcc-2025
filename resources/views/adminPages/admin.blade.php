@@ -48,10 +48,13 @@
 </body>
 </html>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <!--
     Este código é um exemplo de uma página de login para funcionários de um restaurante.
     O usuário deve inserir uma senha para acessar o conteúdo restrito.
     Se a senha estiver correta, o conteúdo é exibido.
     Caso contrário, um alerta informa que a senha está incorreta.
+=======
+>>>>>>> 36bd991f81b5940443d60d151933eea6f0083c46
 =======
 >>>>>>> 36bd991f81b5940443d60d151933eea6f0083c46

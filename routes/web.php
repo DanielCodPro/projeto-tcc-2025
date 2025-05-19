@@ -103,6 +103,15 @@ Route::get('/pagamento', function () {
 // Rota página de checkout
 Route::get('/checkout', function () {
     $usuario = session('usuario'); // ou Auth::user() se estiver usando autenticação Laravel
+<<<<<<< HEAD
+=======
+
+    return view('userPages.checkout', [
+        'produtos' => Produto::all(),
+        'usuario' => $usuario,
+    ]);
+})->name('user.checkout');
+>>>>>>> 36bd991f81b5940443d60d151933eea6f0083c46
 
     return view('userPages.checkout', [
         'produtos' => Produto::all(),
