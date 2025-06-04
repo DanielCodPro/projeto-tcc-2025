@@ -105,7 +105,10 @@
                     <p class="text-md color-cinza-1">A Casa dos Salgados é uma empresa familiar que começou com a paixão
                         por salgados. Oferecemos diversos salgados excepcionais e uma experiência única para todos os
                         clientes! Você vai amar!</p>
-                    <button>Saiba Mais</button>
+                    <a href="{{ url('/Saiba') }}">
+                        <button>Saiba mais</button>
+                    </a>
+
                 </div>
                 <div class="right">
                     <img src="images/5.jpg" alt="">

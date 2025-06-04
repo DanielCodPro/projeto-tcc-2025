@@ -32,6 +32,7 @@ Route::get('/', function () {
     return redirect('/cadastro');
 });
 
+
 // Rotas para usuário (userPages) -------
 // Rota página de cadastro
 Route::get('/cadastro', function () {
@@ -102,13 +103,17 @@ Route::get('/pagamento', function () {
 // Rota página de checkout
 Route::get('/checkout', function () {
     $usuario = session('usuario'); // ou Auth::user() se estiver usando autenticação Laravel
-
     return view('userPages.checkout', [
         'produtos' => Produto::all(),
         'usuario' => $usuario,
     ]);
 })->name('user.checkout');
-
+Route::get('/Saiba', function () {
+    return view('userPages.saiba');
+});
+Route::get('/formatacao', function () {
+    return view('public.formatacao');
+});
 // Rotas para o controller de pagamento
 Route::get('/pagamento/checkout', [PagamentoController::class, 'checkout']);
 Route::get('/pagamento/sucesso', [PagamentoController::class, 'sucesso']);
