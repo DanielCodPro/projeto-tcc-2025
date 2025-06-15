@@ -25,12 +25,13 @@ html, body {
     height: 100%;
 }
 
-.max-width {
+
+.max-width{
     width: 100%;
     min-height: 100vh;
 }
 
-.bg {
+.bg{
     background: url(../images/bg.jpg) no-repeat;
     background-size: cover;
     height: auto;
@@ -47,6 +48,7 @@ html, body {
     justify-content: center;
     min-height: 100vh;
 }
+
 
 /* ------------------- MENU ------------------- */
 
