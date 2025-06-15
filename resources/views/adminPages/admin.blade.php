@@ -45,20 +45,12 @@
     </button>
   </div>
 
-  <!-- Conteúdo protegido -->
-  <div id="conteudo" class="hidden bg-white p-6 rounded-xl shadow-2xl border border-orange-300 text-center w-96">
-    <h1 class="text-3xl font-bold text-orange-400 mb-6">Página do Funcionário</h1>
-
-    <button onclick="window.location.href='{{ url('pedidos') }}'"
-      class="w-full bg-orange-300 text-black p-2 rounded-lg hover:bg-orange-400 font-semibold mb-4 transition-all duration-300">
-      Voltar
-    </button>
-
-    <button onclick="window.location.href='{{ route('produtos.index') }}'"
-      class="w-full bg-orange-300 text-black p-2 rounded-lg hover:bg-orange-400 font-semibold transition-all duration-300">
-      Outra Página
-    </button>
-  </div>
+    <div id="conteudo" style="display: none;">
+        <h1>Página do Funcionário</h1>
+        <button onclick="window.location.href='{{ route('admin.pedidosLocais') }}'">Ir para Pedidos</button>
+        <button onclick="window.location.href='{{ route('admin.pedidosDelivery') }}'">Ir para Pedidos Delivery</button>
+        <button onclick="window.location.href='{{ route('produtos.index') }}'">Ir para Produtos</button>
+    </div>
 </body>
 
 </html>

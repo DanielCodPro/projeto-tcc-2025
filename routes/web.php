@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Pedido;
 use App\Models\Produto;
@@ -13,150 +12,111 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\UsuarioController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-
-
-
 // Redireciona para a página principal ao iniciar
-Route::get('/', function () {
-    return redirect('/cadastro');
-});
+Route::get('/', fn () => redirect('/cadastro'));
 
+// ---------------------- Rotas Usuário (userPages) ----------------------
 
-// Rotas para usuário (userPages) -------
-// Rota página de cadastro
-Route::get('/cadastro', function () {
-    return view('userPages.cadastro');
-})->name('cadastro');
-
-// Rota que recebe o formulário de cadastro
+// Cadastro
+Route::get('/cadastro', fn () => view('userPages.cadastro'))->name('cadastro');
 Route::post('/cadastro', function (Request $request) {
-    // Pega os dados enviados
     $nome = $request->input('nome');
     $email = $request->input('email');
     $telefone = $request->input('telefone');
 
-    //salva no banco com Model
-    $usuario = new Usuario();
-    $usuario->nome = $nome;
-    $usuario->email = $email;
-    $usuario->telefone = $telefone;
-    $usuario->save();
-
-    // Verifica se o usuário já existe
     $usuarioExistente = Usuario::where('email', $email)->first();
     if ($usuarioExistente) {
-        // Usuário já cadastrado, redireciona para a página de login
         return redirect()->route('entrar')->with('mensagem', 'Usuário já cadastrado!');
     }
 
-    // Depois do cadastro, manda pra página de login
-    return redirect()->route('test');
+    Usuario::create(compact('nome', 'email', 'telefone'));
+
+    return redirect()->route('entrar')->with('mensagem', 'Cadastro realizado com sucesso! Faça login para continuar.');
 })->name('cadastro.submit');
 
-//Rota página de login
-Route::get('/entrar', function () {
-    return view('userPages.entrar');
-})->name('entrar');
-
-/// Rota que recebe o formulário de login
+// Login
+Route::get('/entrar', fn () => view('userPages.entrar'))->name('entrar');
 Route::post('/entrar', [UsuarioController::class, 'entrar'])->name('entrar.submit');
-
-// Rota logout
 Route::get('/logout', function () {
     session()->forget('usuario_id');
     session()->flush(); // Limpa todos os dados da sessão
-    return redirect('/')->with('mensagem', 'Logout realizado com sucesso!');
+    return redirect('/entrar')->with('mensagem', 'Logout realizado com sucesso!');
 })->name('logout');
 
-
-// Rotas Google
+// Google Login
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
-// Página Principal
-Route::get('/index', function () {
-    return view('userPages.index');
-})->name('user.index');
+// Páginas do usuário
+Route::get('/index', fn () => view('userPages.index'))->name('user.index');
+Route::get('/menu', [MenuController::class, 'index'])->name('user.menu');
+Route::get('/pagamento', fn () => view('userPages.pagamento'))->name('user.pagamento');
 
-// Página de Menu
-Route::get('/menu', function () {
-    return view('userPages.menu');
-})->name('user.menu');
-
-Route::get('/menu', [MenuController::class, 'index']);//Rota sobre a função da página de menu
-
-Route::get('/pagamento', function () {
-    return view('userPages.pagamento');
-})->name('user.pagamento');
-
-// Rota página de checkout
+// Checkout
 Route::get('/checkout', function () {
-    $usuario = session('usuario'); // ou Auth::user() se estiver usando autenticação Laravel
+    $usuario = session('usuario');
     return view('userPages.checkout', [
         'produtos' => Produto::all(),
         'usuario' => $usuario,
     ]);
 })->name('user.checkout');
-Route::get('/Saiba', function () {
-    return view('userPages.saiba');
+
+// Pagamento
+Route::prefix('/pagamento')->group(function () {
+    Route::get('/checkout', [PagamentoController::class, 'checkout']);
+    Route::get('/sucesso', [PagamentoController::class, 'sucesso']);
+    Route::get('/falha', [PagamentoController::class, 'falha']);
+    Route::get('/pendente', [PagamentoController::class, 'pendente']);
 });
-Route::get('/formatacao', function () {
-    return view('public.formatacao');
-});
-// Rotas para o controller de pagamento
-Route::get('/pagamento/checkout', [PagamentoController::class, 'checkout']);
-Route::get('/pagamento/sucesso', [PagamentoController::class, 'sucesso']);
-Route::get('/pagamento/falha', [PagamentoController::class, 'falha']);
-Route::get('/pagamento/pendente', [PagamentoController::class, 'pendente']);
+
+// Salvar pedido (sem middleware)
+Route::post('/pedido', [PedidoController::class, 'store']);
 
 
-
-// Rotas para administrador (adminPages) com middleware aplicado -------
+// ---------------------- Rotas Administrador (adminPages) ----------------------
 Route::middleware(['admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('adminPages.admin');
-    })->name('admin');
-    
-    //Rota página de pedidos
-    Route::get('/pedidos', function () {
-        return view('adminPages.pedidos', ['pedidos' => Pedido::all()]);
-    })->name('admin.pedidos');
-    
-    // Ações com pedidos
-    Route::post('/pedido', [PedidoController::class, 'store']);
+    Route::get('/admin', fn () => view('adminPages.admin'))->name('admin');
+
+    // Pedidos
+    Route::prefix('/adminPages/pedidos')->group(function () {
+        Route::get('/locais', function () {
+            return view('adminPages.pedidos.pedidosLocais', [
+                'pedidos' => Pedido::where('tipo_pedido', 'local')->get()
+            ]);
+        })->name('admin.pedidosLocais');
+
+        Route::get('/delivery', function () {
+            return view('adminPages.pedidos.pedidosDelivery', [
+                'pedidos' => Pedido::where('tipo_pedido', 'delivery')->get()
+            ]);
+        })->name('admin.pedidosDelivery');
+    });
+
+    // Atualizar status do pedido
     Route::post('/pedidos/{id}/status', function ($id, Request $request) {
         $status = $request->input('status');
-    
-        if ($status === 'entregue') {
-            Pedido::where('id', $id)->delete();
-        } else {
-            Pedido::where('id', $id)->update(['status' => $status]);
+        $pedido = Pedido::find($id);
+
+        if ($pedido) {
+            if ($status === 'entregue') {
+                $pedido->delete();
+            } else {
+                $pedido->update(['status' => $status]);
+            }
         }
-    
+
         return back();
     });
-    
-    Route::prefix('/adminPages/produtos')->group(function () {
-        Route::get('/', [ProdutoController::class, 'index'])->name('produtos.index');
-        Route::get('/create', [ProdutoController::class, 'create'])->name('produtos.create');
-        Route::post('/', [ProdutoController::class, 'store'])->name('produtos.store');
-        Route::get('/{id}/edit', [ProdutoController::class, 'edit'])->name('produtos.edit');
-        Route::put('/{id}', [ProdutoController::class, 'update'])->name('produtos.update');
-        Route::delete('/{id}', [ProdutoController::class, 'destroy'])->name('produtos.destroy');
-    })->name('produtos');
+
+    // Produtos
+    Route::prefix('/adminPages/produtos')->name('produtos.')->group(function () {
+        Route::get('/', [ProdutoController::class, 'index'])->name('index');
+        Route::get('/create', [ProdutoController::class, 'create'])->name('create');
+        Route::post('/', [ProdutoController::class, 'store'])->name('store');
+        Route::get('/{id}/edit', [ProdutoController::class, 'edit'])->name('edit');
+        Route::put('/{id}', [ProdutoController::class, 'update'])->name('update');
+        Route::delete('/{id}', [ProdutoController::class, 'destroy'])->name('destroy');
+    });
 });
-
-
 
 require __DIR__.'/auth.php';
