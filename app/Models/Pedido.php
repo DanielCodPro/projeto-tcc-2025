@@ -9,6 +9,17 @@ use App\Models\Usuario;
 class Pedido extends Model
 {
     use HasFactory;
-    protected $fillable = ['nome_cliente', 'email_cliente', 'mesa', 'itens_pedido', 'status'];
+    protected $table = 'pedidos';
+    protected $fillable = [
+        'nome_cliente',
+        'email_cliente',
+        'tipo_pedido',
+        'mesa',
+        'itens_pedido',
+        'status',
+        'endereco',
+        'telefone',
+    ];
+
 }
 

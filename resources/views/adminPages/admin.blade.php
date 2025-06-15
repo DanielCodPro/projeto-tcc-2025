@@ -39,7 +39,8 @@
 
     <div id="conteudo" style="display: none;">
         <h1>Página do Funcionário</h1>
-        <button onclick="window.location.href='{{ route('admin.pedidos') }}'">Ir para Pedidos</button>
+        <button onclick="window.location.href='{{ route('admin.pedidosLocais') }}'">Ir para Pedidos</button>
+        <button onclick="window.location.href='{{ route('admin.pedidosDelivery') }}'">Ir para Pedidos Delivery</button>
         <button onclick="window.location.href='{{ route('produtos.index') }}'">Ir para Produtos</button>
     </div>
 </body>

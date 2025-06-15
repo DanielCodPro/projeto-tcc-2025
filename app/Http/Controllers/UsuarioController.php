@@ -44,7 +44,7 @@ class UsuarioController extends Controller
               ->first();
 
     if (!$usuario) {
-        return redirect()->route('cadastro')->with('mensagem', 'Usuário não encontrado!');
+        return redirect()->back()->with('mensagem', 'Usuário não encontrado! Informe o nome e email corretos.');
     }
 
     // Salva o ID na sessão

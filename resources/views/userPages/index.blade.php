@@ -6,7 +6,7 @@
         $usuario = Usuario::find(session('usuario_id'));
     }
 
-    
+
 @endphp
 
 <!DOCTYPE html>
@@ -43,65 +43,65 @@
     <meta name="twitter:title" content="Casa dos Salgados">
     <meta name="twitter:description" content="A melhor salgadaria da região de Mogi Mirim!">
     <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}"> <!-- Não utilizar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
-
     <!--Inicio do Home-->
-    <header class="max-width " id="home">
-        <div class="container">
-            <div class="menu">
-                <div class="logo" id="logo"></div>
-                <div class="user">
-                <i class="fa-solid fa-user"></i>
-                    @if ($usuario)
-                        <p class="text-gray-700">{{ $usuario->nome }}</p>
-                    @else
-                        <p class="text-gray-700">Visitante</p>
-                    @endif
-    
-                    <div class="user-menu">
+    <main id="home">
+        <header class="max-width ">
+            <div class="container">
+                <div class="menu">
+                    <div class="logo" id="logo"></div>
+                    <div class="user">
+                        <i class="fa-solid fa-user"></i>
+                        @if ($usuario)
+                            <p class="text-gray-700">{{ $usuario->nome }}</p>
+                        @else
+                            <p class="text-gray-700">Visitante</p>
+                        @endif
+
+                        <div class="user-menu">
+                            <ul>
+                                <li><a href="{{ route('logout') }}">Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="desktop-menu">
                         <ul>
-                            <li><a href="{{ route('logout') }}">Sair</a></li>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">Sobre</a></li>
+                            <li><a href="#services">Serviços</a></li>
+                            <li><a href="{{ url('/menu') }}">Menu</a></li>
+                            <li><a href="#contato">Contato</a></li>
                         </ul>
                     </div>
                 </div>
-
-                <div class="desktop-menu">
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">Sobre</a></li>
-                        <li><a href="#services">Serviços</a></li>
-                        <li><a href="{{ url('/menu') }}">Menu</a></li>
-                        <li><a href="#contato">Contato</a></li>
-                    </ul>
+                <div class="call">
+                    <div class="left">
+                        <img src="images/1.png" alt="">
+                    </div>
+                    <div class="right">
+                        <h1 class="color-laranja text-gd">Casa dos Salgados</h1>
+                        <h2 class="color-cinza-1 text-md">A melhor salgadaria da região centro mogiana</h2>
+                        <p class="text-pq">Venha nos visitar e experimente nossos deliciosos salgados!</p>
+                        <button onclick="window.location.href='{{ url('/menu') }}'">Ver Menu</button>
+                    </div>
                 </div>
             </div>
-            <div class="call">
-                <div class="left">
-                    <img src="images/1.png" alt="">
-                </div>
-                <div class="right">
-                    <h1 class="color-laranja text-gd">Casa dos Salgados</h1>
-                    <h2 class="color-cinza-1 text-md">A melhor Salgadaria da Região</h2>
-                    <p class="text-pq">Venha nos visitar e experimente nossos deliciosos salgados!</p>
-                    <button onclick="window.location.href='{{ url('/menu') }}'">Ver Menu</button>
-                </div>
-            </div>
-        </div>
-        <button id="back-to-top">^</button>
-    </header>
-
+            <button id="back-to-top">^</button>
+        </header>
+    </main>
     <!--Inicio do About-->
     <section class="max-width " id="about">
         <div class="container">
             <div class="call">
                 <div class="left">
-                    <span class="color-laranja text-title">Sobre Nós</span>
+                    <span class="color-laranja">Sobre Nós</span>
                     <p class="text-md color-cinza-1">A Casa dos Salgados é uma empresa familiar que começou com a paixão
                         por salgados. Oferecemos diversos salgados excepcionais e uma experiência única para todos os
                         clientes! Você vai amar!</p>
@@ -145,9 +145,8 @@
     <footer id="contato">
         <div class="container">
             <img src="images/logo.png" alt="">
-            <p class="text-pq">Copyright 2025 <span class="color-laranja">Casa dos Salgados</span> All Rights Reserved
-            </p>
-            <p>Tel: (19)99635-9428</p>
+            <p class="text-pq"> © 2025 <span>Casa dos Salgados</span> Todos Direitos Reservados</p>
+            <p id ="tel">Tel: (19)99635-9428</p>
         </div>
     </footer>
     <script>

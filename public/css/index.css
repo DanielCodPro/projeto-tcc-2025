@@ -1,34 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Kdam+Thmor+Pro&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Titillium+Web:ital@1&display=swap');
-*{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --laranja: #fa5e00;
+    --cinza-1: #2b2b2b;
+    --cinza-2: #545454;
+    --branco: #ffffff;
+    --fundo-box-service: #e4e2e2b1;
+    --fundo-menu: #dbd5c174;
+}
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-/*Mini Framework*/
-html, body{
-    font-family: 'Arial', sans-serif;
+/* ------------------- GERAL ------------------- */
+
+html, body {
     font-size: 16px;
     line-height: 1.5;
-    color: #333;
+    color: var(--cinza-1);
     height: 100%;
 }
 
-
-.max-width{
+.max-width {
     width: 100%;
     min-height: 100vh;
 }
 
-.bg{
+.bg {
     background: url(../images/bg.jpg) no-repeat;
     background-size: cover;
     height: auto;
 }
 
-.container{
-    max-width: 1330px;
+/* ------------------- CONTAINER ------------------- */
+
+.container {
+    max-width: 100%;
+    padding: 0 2%;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -36,119 +48,141 @@ html, body{
     min-height: 100vh;
 }
 
-/*Menu*/
+/* ------------------- MENU ------------------- */
 
-.menu{
+.menu {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 100%;
-    height: 80px;
-    padding: 0 2%;
-    background-color: #dbd5c174;
-    background-size: 10px;
-    border-radius: 0 0 50px 50px;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 0 5%;
+    height: 90px;
+    border-bottom: 1px solid var(--laranja);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    top: 0;
+    backdrop-filter: blur(5px);
+    z-index: 999;
 }
 
-.logo{
-    background: url(../images/logo.png) no-repeat;
+.logo {
+    width: 200px;
+    height: 190px;
+    background: url(../images/logo.png) no-repeat center center;
     background-size: cover;
-    margin-top: auto;
-    width: 160px;
-    height: 160px;
-    position: relative;
-    border-radius: 0 0 50px 50px;
-    z-index: 9;
+    border-radius: 0 0 50px 50px; 
+    border: 4px solid var(--fundo-menu);
+    box-shadow: 0 4px 10px  rgba(0, 0, 0, 0.1);
+    margin-top: 4em;
+    margin-right: 2em;
+    position: static;
+    top: 15px;
 }
 
-.user{
+
+/* ------------------- USUÁRIO ------------------- */
+
+.user {
     display: flex;
     align-items: center;
-    justify-content: center;
-   
+    gap: 10px;
 }
 
-.user i{
+.user i {
     font-size: 30px;
-    color: #2b2b2b;
+    color: var(--cinza-1);
 }
 
-.user p{
-    font-size: 20px;
-    font-weight: bold;
-    color: #2b2b2b;
-    margin-left: 10px;
-}
-
-.user-menu{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.user-menu ul{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    list-style-type: none;
-}
-
-.user-menu li{
-    padding: 0 25px;
-}
-
-.user-menu a{
-    text-decoration: none;
-    color: #fa5e00;
-    font-size: 20px;
-    font-weight: bold;
-}
-.user-menu a:hover{
-    color: #2b2b2b;
+.user p {
+    font-size: 18px;
+    color: var(--cinza-1);
     font-weight: 600;
 }
 
-/*Tamanho das fontes*/  
-.text-gd{
-   font-size: 64px;
+/* MENU DO USUÁRIO */
+.user-menu ul {
+    display: flex;
+    list-style: none;
+    margin-left: 15px;
 }
 
-.text-md{
-   font-size: 36px;
+.user-menu li {
+    margin-left: 10px;
 }
 
-.text-pq{
-   font-size: 14px;
+.user-menu a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--laranja);
+    transition: color 0.3s ease;
 }
 
-.text-title{
-   font-size: 20px;
-   font-weight: 600;
+.user-menu a:hover {
+    color: var(--cinza-1);
 }
 
-/*Cores de Texto*/
-
-.color-laranja{
-    color: #fa5e00;
+/* DESKTOP MENU */
+.desktop-menu ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
 }
 
-.color-cinza-1{
-    color: #2b2b2b
+.desktop-menu ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--cinza-2);
+    font-weight: 600;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
 }
 
-.color-cinza-2{
-    color: #545454;
+.desktop-menu ul li a:hover {
+    background-color: var(--laranja);
+    color: var(--branco);
 }
 
-/*Chamada*/
+/* ------------------- TIPOGRAFIA ------------------- */
 
-.call{
+.text-gd {
+    font-size: clamp(1.5rem, 2vw + 1rem, 3rem);
+}
+
+.text-md {
+    font-size: clamp(1.2rem, 1.5vw + 0.8rem, 2rem);
+}
+
+.text-pq {
+    font-size: clamp(1rem, 1.2vw + 0.5rem, 1.5rem);
+}
+
+.text-title {
+    font-size: clamp(2rem, 3vw + 1rem, 4rem);
+    font-weight: 700;
+}
+
+.color-laranja {
+    color: var(--laranja);
+}
+
+.color-cinza-1 {
+    color: var(--cinza-1);
+}
+
+.color-cinza-2 {
+    color: var(--cinza-2);
+}
+
+/* ------------------- CHAMADA ------------------- */
+
+.call {
     display: flex;
     align-items: center;
     margin-top: 120px;
 }
 
-.left{
+.left, .right {
     width: 50%;
     min-height: 600px;
     max-height: 800px;
@@ -158,46 +192,43 @@ html, body{
     padding: 0 2%;
 }
 
-.right{
-    width: 50%;
-    min-height: 600px;
-    max-height: 800px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 2%;
-}
+/* ------------------- IMAGENS ------------------- */
 
-/*Imagem*/
-
-img{
+img {
     width: 100%;
-    height:100%;
+    height: 100%;
     object-fit: cover;
 }
 
-/*botão*/
+/* ------------------- BOTÃO ------------------- */
 
-button{
-    background: #fa5e00;
-    color: #fff;
+button {
+    background: var(--laranja);
+    color: var(--branco);
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 12px 28px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-    transition: all .3s ease-in-out;
-}
-button:hover{
-    background: #fff;
-    border: 1px solid #fa5e00;
-    color: #fa5e00;
+    transition: all 0.3s ease-in-out;
 }
 
-/*content*/
+button:hover {
+    background: var(--branco);
+    border: 1px solid var(--laranja);
+    color: var(--laranja);
+}
 
-.content{
+a:focus,
+button:focus {
+    outline: 2px dashed var(--laranja);
+    outline-offset: 4px;
+}
+
+/* ------------------- CONTENT ------------------- */
+
+.content {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -207,7 +238,7 @@ button:hover{
     padding: 0 2%;
 }
 
-.down{
+.down {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -215,9 +246,7 @@ button:hover{
     min-height: 300px;
 }
 
-/*Título*/
-
-.titulo{
+.titulo {
     width: 100%;
     min-height: 250px;
     display: flex;
@@ -226,9 +255,7 @@ button:hover{
     flex-direction: column;
 }
 
-/*Box*/
-
-.box{
+.box {
     width: 25%;
     min-height: 125px;
     display: flex;
@@ -236,175 +263,270 @@ button:hover{
     justify-content: center;
     flex-direction: column;
     padding: 0 2%;
+    background-color: var(--fundo-box-service);
+    margin: 10px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
 }
 
-/*Info*/
+/* ------------------- DESKTOP MENU ------------------- */
 
-.info{
+.desktop-menu ul {
     display: flex;
 }
 
-/*desktop-menu*/
-
-.desktop-menu ul{
-    display: flex;
-}
-
-.desktop-menu ul li{
+.desktop-menu ul li {
     padding: 0 25px;
-    list-style-type: none;
+    list-style: none;
 }
 
-.desktop-menu ul li a{
+.desktop-menu ul li a {
     text-decoration: none;
-    color: #545454;
-    font-size: 20px;
-    font-weight:bold ;
+    color: var(--cinza-2);
+    font-size: 30px;
+    font-weight: bold;
 }
 
-.desktop-menu ul li a:hover{
-    color: #fa5e00;
-    font-weight: 600;
-}
+/* ------------------- BOTÃO VOLTAR AO TOPO ------------------- */
 
-/*button to top*/
-#back-to-top{
+#back-to-top {
     position: fixed;
+    width: 60px;
+    height: 60px;
     bottom: 2px;
     right: 10px;
     padding: 5px 10px;
-    background-color: #2b2b2b;
+    background-color: var(--cinza-1);
+    color: white;
+    transition: all 0.3s ease-in-out;
+    border-radius: 50%;
 }
 
-/*scrollbar Personalisada muito fera*/
+#back-to-top:hover {
+    background-color: var(--laranja);
+    color: var(--branco);
+}
+
+
+/* ------------------- SCROLLBAR ------------------- */
 
 body::-webkit-scrollbar {
-    width: 12px;
+    width: 10px;
+    height: 10px;
 }
 
 body::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: #f1f1f1;
 }
 
 body::-webkit-scrollbar-thumb {
-    background: #2b2b2b; 
+    background: var(--cinza-1);
     border-radius: 20px;
-    border:1px solid;
+    border: 1px solid;
 }
 
-/*Home*/ 
+/* ------------------- HOME ------------------- */
 
-
-#home .container{
+#home {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#home .container {
     justify-content: flex-start;
     flex-direction: column;
 }
 
-#home .right{
+#home .right {
     flex-direction: column;
     align-items: flex-end;
 }
 
-#home .right h1{
-    text-align: end;
-}
-
-#home .right h2{
+#home .right h1,
+#home .right h2,
+#home .right p {
     text-align: end;
     margin-top: 20px;
 }
 
-#home .right p{
-    text-align: end;
-    margin-top: 20px;
+#home .right h1 {
+    font-size: 90px;
+}
+#home .right h2 {
+    font-size: 40px;
+}
+#home .right p {
+    font-size: 20px;
 }
 
-#home .right button{
+#home .right button {
     margin-top: 30px;
 }
 
-/*About*/
+/* ------------------- ABOUT ------------------- */
+
 #about {
     display: flex;
-    flex-wrap: wrap; /* opcional, para melhor responsividade */
-    justify-content: space-between; /* ou center, se preferir */
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-#about .left{
+#about .left {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     padding: 0 2%;
 }
 
-#about .left span{
-margin-top: 20px;
-}
-
-#about .left h2{
-margin-top: 20px;
-}
-
-#about .left p{
+#about .left span,
+#about .left h2,
+#about .left p,
+#about .left button {
     margin-top: 20px;
 }
 
-#about .left button{
-    margin-top: 20px;
+#about .left span {
+    font-size: 40px;
+    font-weight: 600;
 }
 
-#about img{
+#about img {
     border-radius: 30px;
 }
 
-/*Services*/
+/* ------------------- SERVICES ------------------- */
 
-#services .box i{
-    border: 4px solid #2b2b2b;
+#services .box i {
+    border: 4px solid var(--cinza-1);
     border-radius: 30px;
     padding: 30px;
     margin-top: 10px;
 }
 
-#services .box h2{
+#services .box h2,
+#services .box p {
     margin-top: 30px;
     text-align: center;
 }
 
-#services .box p{
-    margin-top: 30px;
-    text-align: center;
-}
+/* ------------------- FOOTER ------------------- */
 
-/*Footer*/
-
-footer .container{
+footer .container {
     width: 100%;
+    padding: 1rem;
     min-height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    background-color: var(--laranja);
 }
 
-footer .container img{
+footer .container img {
     margin-bottom: 6px;
     width: 120px;
     object-fit: contain;
-    border: 4px solid 36#a28f8f;
+    border: 4px solid #a28f8f;
     border-radius: 100px;
 }
 
-footer .container p{
+footer .container p {
     font-weight: 600;
+    color: var(--branco);
+    font-size: 20px;
 }
 
-@media (max-width: 768px) {
-    .about {
-      flex-direction: column;
+footer .container span {
+    font-weight: 600;
+    color: var(--cinza-1);
+    font-size: 20px;
+}
+
+/* ------------------- RESPONSIVIDADE ------------------- */
+
+@media (max-width: 1024px) {
+    .call, .down {
+        flex-direction: column;
+        gap: 2rem;
     }
-  
-    .left, .right {
-      width: 100%;
+
+    .left, .right, .box {
+        width: 100%;
+        padding: 1rem;
+        text-align: center;
     }
-  }
-  
+
+    .logo {
+        width: 190px;
+        height: 190px;
+        margin: 1rem auto;
+        border: 4px solid var(--fundo-menu);
+        border-radius: 50%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+        top: 0;
+    }
+
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        height: auto;
+        width: 100%;
+        border-bottom: 1px solid var(--laranja);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .desktop-menu ul {
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        margin-top: 1rem;
+    }
+    .desktop-menu ul li a {
+        font-size: 12px;
+        padding: 0.2rem;   
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        color: var(--cinza-2);
+        font-weight: 600;
+    }
+
+    #home .right h1 {
+        font-size: 50px;
+    }
+
+    #home .right h2 {
+        font-size: 28px;
+    }
+
+    #home .right p {
+        font-size: 16px;
+    }
+
+    #contato{
+        margin-top: 2rem; 
+        padding: 1rem 0 0 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        font-size: 10px;
+    }
+    #contato .container {
+        align-items: justify;
+        justify-content: center;
+        padding: 0 2rem;
+    }
+    #contato .container p {
+        font-size: 14px;
+        text-align: center;
+        margin-top: 1rem;
+    }
+    
+    #back-to-top {
+        width: 30px;
+        height: 30px;
+        justify-content: center;
+    }
+
+}

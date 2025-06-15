@@ -2,43 +2,74 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pedido;
-use App\Models\Usuario;
 use Illuminate\Http\Request;
-use illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Validator;
+use App\Models\Usuario;
+use App\Models\Pedido;
+use Illuminate\Support\Facades\Log;
 
 class PedidoController extends Controller
 {
     public function store(Request $request)
- {
-    $itens = json_decode($request->itens, true);
+    {
+        $tipoPedido = in_array($request->tipo_pedido, ['local', 'delivery']) ? $request->tipo_pedido : 'local';
 
-    if (!is_array($itens)) {
-        return back()->withErrors('Erro ao processar os itens do pedido.');
-    }
+        $rules = [
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'itens' => 'required|json',
+            'tipo_pedido' => 'in:local,delivery',
+        ];
 
-    // Tenta pegar nome e email do formulário (via input hidden). Se não tiver, busca pela sessão.
-    $nome = $request->nome;
-    $email = $request->email;
-
-    if (!$nome || !$email) {
-        $usuario = null;
-        if (session()->has('usuario_id')) {
-            $usuario = Usuario::find(session('usuario_id'));
+        if ($tipoPedido === 'local') {
+            $rules['mesa'] = 'required|string|max:10';
+        } elseif ($tipoPedido === 'delivery') {
+            $rules['endereco'] = 'required|string|max:255';
+            $rules['telefone'] = 'required|string|max:20';
         }
 
-        $nome = $nome ?? ($usuario?->nome ?? 'Desconhecido');
-        $email = $email ?? ($usuario?->email ?? '');
+        $validator = Validator::make($request->all(), $rules);
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $usuario = Usuario::where('email', $request->email)->first();
+        if (!$usuario) {
+            return back()->withErrors(['Usuário não encontrado!'])->withInput();
+        }
+
+        try {
+            $itens = json_decode($request->itens, true);
+            if (!is_array($itens)) {
+                return back()->withErrors(['Itens do pedido estão mal formatados.'])->withInput();
+            }
+
+            $data = [
+                'nome_cliente' => $request->nome,
+                'email_cliente' => $request->email,
+                'status' => 'pendente',
+                'itens_pedido' => json_encode($itens),
+                'tipo_pedido' => $tipoPedido,
+            ];
+
+            if ($tipoPedido === 'local') {
+                $data['mesa'] = $request->mesa;
+            } else {
+                $data['endereco'] = $request->endereco;
+                $data['telefone'] = $request->telefone;
+            }
+
+            Pedido::create($data);
+
+            if ($tipoPedido === 'delivery') {
+                return redirect()->route('user.pagamento')->with('success', 'Pedido realizado! Faça o pagamento.');
+            } else {
+                return redirect()->route('user.index')->with('success', 'Pedido realizado com sucesso! Aguarde na sua mesa.');
+            }
+        } catch (\Exception $e) {
+            \Log::error('Erro ao salvar pedido', ['exception' => $e]);
+            return back()->withErrors(['Ocorreu um erro ao processar seu pedido. Tente novamente mais tarde.']);
+        }
     }
 
-    Pedido::create([
-        'nome_cliente' => $nome,
-        'email_cliente' => $email,
-        'mesa' => $request->mesa,
-        'status' => 'pendente',
-        'itens_pedido' => json_encode($itens),
-    ]);
-    return redirect('/pagamento');
- }
 }
-
