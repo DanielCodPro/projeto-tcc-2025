@@ -25,7 +25,6 @@ html, body {
     height: 100%;
 }
 
-
 .max-width{
     width: 100%;
     min-height: 100vh;
@@ -49,8 +48,8 @@ html, body {
     min-height: 100vh;
 }
 
+/* ------------------- MENU------------------- */
 
-/* ------------------- MENU ------------------- */
 
 .menu {
     display: flex;
