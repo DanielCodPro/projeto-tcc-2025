@@ -9,8 +9,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-white min-h-screen flex items-center justify-center px-4 py-10">
-    <div class="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl border border-gray-200">
+<body class="min-h-screen flex items-center justify-center px-4 py-10" style="background-image: url('/images/bg.jpg');">
+    <div class="absolute inset-0 bg-black/40 z-0"></div>
+
+    <div class="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl border border-gray-200 z-10">
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">✏️ Editar Produto</h1>
 
         @if (session('success'))
@@ -25,7 +27,8 @@
             </div>
         @endif
 
-        <form action="{{ route('produtos.update', $produto->id) }}" method="POST" class="space-y-4">
+        <form action="{{ route('produtos.update', $produto->id) }}" method="POST" enctype="multipart/form-data"
+            class="space-y-4">
             @csrf
             @method('PUT')
 
@@ -53,9 +56,32 @@
                     class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
             </div>
 
+            <div>
+                <label for="tipo" class="block text-gray-700 font-semibold">Tipo:</label>
+                <select name="tipo" id="tipo" required
+                    class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                    <option value="">Selecione...</option>
+                    <option value="alimento" {{ $produto->tipo == 'alimento' ? 'selected' : '' }}>Alimento</option>
+                    <option value="bebida" {{ $produto->tipo == 'bebida' ? 'selected' : '' }}>Bebida</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="imagem" class="block text-gray-700 font-semibold">Imagem do Produto:</label>
+                @if ($produto->imagem)
+                    <div class="mb-2">
+                        <img src="{{ asset('storage/' . $produto->imagem) }}" alt="Imagem atual"
+                            class="h-24 rounded shadow">
+                    </div>
+                @endif
+                <input type="file" name="imagem" id="imagem" accept="image/*"
+                    class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                <small class="text-gray-500">Deixe em branco para manter a imagem atual.</small>
+            </div>
+
             <div class="flex justify-between items-center pt-4">
-                <a href="{{ route('produtos.index') }}"
-                    class="text-sm text-gray-600 hover:underline">← Voltar para a lista</a>
+                <a href="{{ route('produtos.index') }}" class="text-sm text-gray-600 hover:underline">← Voltar para a
+                    lista</a>
                 <button type="submit"
                     class="bg-orange-400 hover:bg-orange-500 text-black font-semibold py-2 px-6 rounded-lg transition">
                     Atualizar

@@ -13,12 +13,12 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\UsuarioController;
 
 // Redireciona para a página principal ao iniciar
-Route::get('/', fn () => redirect('/cadastro'));
+Route::get('/', fn() => redirect('/cadastro'));
 
 // ---------------------- Rotas Usuário (userPages) ----------------------
 
 // Cadastro
-Route::get('/cadastro', fn () => view('userPages.cadastro'))->name('cadastro');
+Route::get('/cadastro', fn() => view('userPages.cadastro'))->name('cadastro');
 Route::post('/cadastro', function (Request $request) {
     $nome = $request->input('nome');
     $email = $request->input('email');
@@ -35,7 +35,7 @@ Route::post('/cadastro', function (Request $request) {
 })->name('cadastro.submit');
 
 // Login
-Route::get('/entrar', fn () => view('userPages.entrar'))->name('entrar');
+Route::get('/entrar', fn() => view('userPages.entrar'))->name('entrar');
 Route::post('/entrar', [UsuarioController::class, 'entrar'])->name('entrar.submit');
 Route::get('/logout', function () {
     session()->forget('usuario_id');
@@ -48,9 +48,12 @@ Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name(
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 // Páginas do usuário
-Route::get('/index', fn () => view('userPages.index'))->name('user.index');
+Route::get('/index', [UsuarioController::class, 'index'])->name('user.index');
 Route::get('/menu', [MenuController::class, 'index'])->name('user.menu');
-Route::get('/pagamento', fn () => view('userPages.pagamento'))->name('user.pagamento');
+Route::get('/pagamento', fn() => view('userPages.pagamento'))->name('user.pagamento');
+Route::get('/saiba', fn() => view('userPages.saiba'))->name('user.saiba');
+
+
 
 // Checkout
 Route::get('/checkout', function () {
@@ -69,13 +72,13 @@ Route::prefix('/pagamento')->group(function () {
     Route::get('/pendente', [PagamentoController::class, 'pendente']);
 });
 
+
+// ---------------------- Rotas Administrador (adminPages) ----------------------
 // Salvar pedido (sem middleware)
 Route::post('/pedido', [PedidoController::class, 'store']);
 
-
-// ---------------------- Rotas Administrador (adminPages) ----------------------
 Route::middleware(['admin'])->group(function () {
-    Route::get('/admin', fn () => view('adminPages.admin'))->name('admin');
+    Route::get('/admin', fn() => view('adminPages.admin'))->name('admin');
 
     // Pedidos
     Route::prefix('/adminPages/pedidos')->group(function () {
@@ -119,4 +122,4 @@ Route::middleware(['admin'])->group(function () {
     });
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

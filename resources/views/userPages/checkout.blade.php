@@ -17,12 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 </head>
 
-<script>
-    
-</script>
-
-<body
-    class="min-h-screen flex items-center justify-center py-8"
+<body class="min-h-screen flex items-center justify-center py-8"
     style="background-image: url('/images/bg.jpg'); background-size: cover; background-position: center;">
     <div class="absolute inset-0 bg-black bg-opacity-20"></div>
     <div class="w-full max-w-xl bg-white rounded-2xl shadow-2xl border border-gray p-10 z-0">
@@ -65,13 +60,17 @@
             </div>
 
             <div id="info_delivery" style="display: none;">
-                <label for="endereco" class="block text-sm font-bold text-yellow-700 mb-1">Endereço:</label>
+                <p class="mb-2 text-gray-600">Preencha para receber seu pedido em casa.</p>
+                <label for="endereco" class="block text-sm font-bold text-yellow-500 mb-1">Endereço:</label>
                 <input type="text" name="endereco" id="endereco"
                     class="w-full rounded-lg border border-gray p-2 mb-2 focus:ring-2 focus:ring-yellow-400">
 
-                <label for="telefone" class="block text-sm font-bold text-yellow-700 mb-1">Telefone:</label>
+                <label for="telefone" class="block text-sm font-bold text-yellow-500 mb-1">Telefone:</label>
                 <input type="text" name="telefone" id="telefone"
-                    class="w-full rounded-lg border border-gray p-2 focus:ring-2 focus:ring-yellow-400">
+                    class="w-full rounded-lg border border-gray p-2 focus:ring-2 focus:ring-yellow-400"
+                    @if($usuario && $usuario->telefone) value="{{ $usuario->telefone }}"
+                    @endif
+                >
             </div>
 
             <input type="hidden" name="itens" id="itens_pedido">
@@ -122,7 +121,12 @@
             }
         }
 
+
         const tipoPedido = document.getElementById('tipo_pedido');
+        const mesaSelect = document.getElementById('mesa');
+        const enderecoInput = document.getElementById('endereco');
+        const telefoneInput = document.getElementById('telefone');
+
         tipoPedido.addEventListener('change', function () {
             let mesaSection = document.getElementById('mesa_section');
             let deliveryInfo = document.getElementById('info_delivery');
@@ -130,13 +134,15 @@
             if (this.value === 'delivery') {
                 mesaSection.style.display = 'none';
                 deliveryInfo.style.display = 'block';
-                document.getElementById('endereco').required = true;
-                document.getElementById('telefone').required = true;
+                enderecoInput.required = true;
+                telefoneInput.required = true;
+                mesaSelect.required = false; // <-- Remova o required do campo mesa
             } else {
                 mesaSection.style.display = 'block';
                 deliveryInfo.style.display = 'none';
-                document.getElementById('endereco').required = false;
-                document.getElementById('telefone').required = false;
+                enderecoInput.required = false;
+                telefoneInput.required = false;
+                mesaSelect.required = true; // <-- Adicione o required de volta
             }
         });
 
@@ -146,6 +152,11 @@
             if (tipoPedido.value === 'delivery') {
                 document.getElementById('mesa_section').style.display = 'none';
                 document.getElementById('info_delivery').style.display = 'block';
+                enderecoInput.required = true;
+                telefoneInput.required = true;
+                mesaSelect.required = false;
+            } else {
+                mesaSelect.required = true;
             }
         });
 

@@ -5,8 +5,6 @@
     if (session()->has('usuario_id')) {
         $usuario = Usuario::find(session('usuario_id'));
     }
-
-
 @endphp
 
 <!DOCTYPE html>
@@ -47,6 +45,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=order_approve" />
 </head>
 
 <body>
@@ -55,21 +55,20 @@
         <header class="max-width ">
             <div class="container">
                 <div class="menu">
-                    <div class="logo" id="logo"></div>
-                    <div class="user">
-                        <i class="fa-solid fa-user"></i>
-                        @if ($usuario)
-                            <p class="text-gray-700">{{ $usuario->nome }}</p>
-                        @else
-                            <p class="text-gray-700">Visitante</p>
-                        @endif
+                    <div class="top-bar">
+                        <div class="logo" id="logo"></div>
+                        <div class="user">
+                            <i class="fa-solid fa-user"></i>
+                            @if ($usuario)
+                                <p class="text-gray-700">{{ $usuario->nome }}</p>
+                            @else
+                                <p class="text-gray-700">Visitante</p>
+                            @endif
 
-                        <div class="user-menu">
-                            <ul>
-                                <li><a href="{{ route('logout') }}">Sair</a></li>
-                            </ul>
+                            <a href="{{ route('logout') }}">Sair</a>
                         </div>
                     </div>
+
 
                     <div class="desktop-menu">
                         <ul>
@@ -81,6 +80,8 @@
                         </ul>
                     </div>
                 </div>
+
+                <!-- Início do Call -->
                 <div class="call">
                     <div class="left">
                         <img src="images/1.png" alt="">
@@ -88,12 +89,45 @@
                     <div class="right">
                         <h1 class="color-laranja text-gd">Casa dos Salgados</h1>
                         <h2 class="color-cinza-1 text-md">A melhor salgadaria da região centro mogiana</h2>
-                        <p class="text-pq">Venha nos visitar e experimente nossos deliciosos salgados!</p>
+                        <p class="text-pq">Quer bater um rango? Clica no botão abaixo e veja nosso cardápio!</p>
                         <button onclick="window.location.href='{{ url('/menu') }}'">Ver Menu</button>
                     </div>
                 </div>
             </div>
             <button id="back-to-top">^</button>
+            @if(isset($pedido))
+                <!-- Overlay escuro -->
+                <div id="overlay" class="hidden overlay-bg"></div>
+
+                <!-- Botão Ver Comanda -->
+                <button id="abrirComandaBtn" class="comanda-btn"><span class="material-symbols-outlined">
+                        order_approve
+                    </span></button>
+
+                <!-- Modal de comanda -->
+                <div id="comandaModal" class="hidden comanda-modal">
+                    <h2>Comanda do Pedido {{ $pedido->id }}</h2>
+                    <p><strong>Cliente:</strong> {{ $pedido->nome_cliente }}</p>
+                    @if ($pedido->tipo_pedido == 'delivery')
+                        <p><strong>Endereço:</strong> {{ $pedido->endereco }}</p>
+                        <p><strong>Telefone:</strong> {{ $pedido->telefone }}</p>
+                        <p>Seu pedido logo chegará a sua residência!</p>
+                    @else
+                        <p><strong>Email:</strong> {{ $pedido->email_cliente }}</p>
+                        <p><strong>Mesa:</strong> {{ $pedido->mesa }}</p>
+                    @endif
+                    <p><strong>Itens:</strong></p>
+                    <ul>
+                        @foreach(json_decode($pedido->itens_pedido, true) as $item)
+                            <li>{{ $item['nome'] }} - {{ $item['quantidade'] }}</li>
+                        @endforeach
+                    </ul>
+                    <p><strong>Status:</strong> {{ ucfirst($pedido->status) }}</p>
+
+                    <button id="fecharComandaBtn" class="fechar-btn"><span>X</span></button>
+                </div>
+            @endif
+
         </header>
     </main>
     <!--Inicio do About-->
@@ -105,9 +139,7 @@
                     <p class="text-md color-cinza-1">A Casa dos Salgados é uma empresa familiar que começou com a paixão
                         por salgados. Oferecemos diversos salgados excepcionais e uma experiência única para todos os
                         clientes! Você vai amar!</p>
-                    <a href="{{ url('/Saiba') }}">
-                        <button>Saiba mais</button>
-                    </a>
+                    <button onclick="window.location.href='{{ url('/saiba') }}'">Saiba mais</button>
 
                 </div>
                 <div class="right">
@@ -126,14 +158,14 @@
             </div>
             <div class="down">
                 <div class="box">
-                    <i class="fa fa-cutlery text-gd color-laranja" aria-hidden="true"></i>
+                    <i class="fa fa-trophy text-gd color-laranja" aria-hidden="true"></i>
                     <h2> A melhor salgadaria da região centro mogi-miriano!</h2>
-                    <p>Salgadaria destaque na região!</p>
+                    <p>Salgadaria destaque na região! Venha nos visitar!</p>
                 </div>
                 <div class="box">
                     <i class="fa-solid fa-burger text-gd color-laranja"></i>
                     <h2> Temos uma variedade de salgados para todos os gostos!</h2>
-                    <p>Experimente nosso típico salgadinho de alho!</p>
+                    <p>Experimente nosso típico salgadinho de alho ou nossa gloriosa coxinha da casa!</p>
                 </div>
                 <div class="box">
                     <i class="fa fa-motorcycle text-gd color-laranja" aria-hidden="true"></i>
@@ -149,23 +181,58 @@
         <div class="container">
             <img src="images/logo.png" alt="">
             <p class="text-pq"> © 2025 <span>Casa dos Salgados</span> Todos Direitos Reservados</p>
-            <p id ="tel">Tel: (19)99635-9428</p>
+            <p id="tel">Tel: (19)99635-9428</p>
+            <p id="email">Email: casadossalgadosmm@hotmail.com.br</p>
         </div>
     </footer>
     <script>
 
         //Botão para voltar ao topo
         var btn = document.querySelector("#back-to-top");
+        var comandaBtn = document.querySelector(".comanda-btn");
+        var backToTopTimeout = null;
+
         window.onscroll = function () {
             if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                btn.style.display = "block";
+                // Limpa timeout anterior se o usuário continuar rolando
+                if (backToTopTimeout) clearTimeout(backToTopTimeout);
+                // Só mostra após 2 segundos
+                backToTopTimeout = setTimeout(function () {
+                    btn.style.display = "block";
+                    if (comandaBtn) comandaBtn.classList.remove('hide-comanda');
+                }, 500); // 500ms para mostrar o botão
             } else {
+                if (backToTopTimeout) clearTimeout(backToTopTimeout);
                 btn.style.display = "none";
+                if (comandaBtn) comandaBtn.classList.add('hide-comanda');
             }
         };
-        btn.addEventListener("click", function () {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
+
+        // Adiciona o evento de clique para voltar ao topo
+        btn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Modal de Comanda
+        document.addEventListener('DOMContentLoaded', function () {
+            const abrirComandaBtn = document.getElementById('abrirComandaBtn');
+            const fecharComandaBtn = document.getElementById('fecharComandaBtn');
+            const comandaModal = document.getElementById('comandaModal');
+            const overlay = document.getElementById('overlay');
+
+            if (abrirComandaBtn && fecharComandaBtn && comandaModal && overlay) {
+                abrirComandaBtn.addEventListener('click', () => {
+                    comandaModal.classList.remove('hidden');
+                    overlay.classList.remove('hidden');
+                    abrirComandaBtn.classList.add('hidden'); // Esconde o botão
+                });
+
+                fecharComandaBtn.addEventListener('click', () => {
+                    comandaModal.classList.add('hidden');
+                    overlay.classList.add('hidden');
+                    abrirComandaBtn.classList.remove('hidden'); // Mostra o botão novamente se quiser
+                });
+            }
         });
     </script>
 </body>
