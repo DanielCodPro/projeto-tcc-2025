@@ -4,274 +4,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Casa dos Salgados</title>
-
-    <!--SEO e meta tags ajudam os motores de busca (como o Google) a entender melhor o conteúdo do seu site, aqui to adicinando as mais essenciais-->
-    <!-- Meta descrição (aparece no Google) -->
+    <title>Saiba Mais - Casa dos Salgados</title>
+    <!-- Meta tags e SEO mantidos -->
     <meta name="description"
         content="Deliciosos salgados feitos com carinho! Venha conhecer a Casa dos Salgados, destaque em Mogi Mirim. Drive-thru e atendimento especial!">
-
-    <!-- Meta palavras-chave (menos usada hoje, mas pode incluir) -->
     <meta name="keywords" content="salgados, salgadaria, Mogi Mirim, comida rápida, festa, delivery, drive-thru">
-
-    <!-- Meta autor -->
     <meta name="author" content="Casa dos Salgados">
-
-    <!-- Define o idioma para SEO -->
     <meta name="language" content="pt-BR">
-
-    <!-- Open Graph (Facebook e redes sociais) -->
     <meta property="og:title" content="Casa dos Salgados - Os Melhores Salgados de Mogi Mirim">
     <meta property="og:description"
         content="Experimente nossos salgados irresistíveis. Atendimento de qualidade e drive-thru.">
     <meta property="og:image" content="{{ asset('images/logo.png') }}">
     <meta property="og:url" content="https://www.casadossalgados.com.br">
     <meta property="og:type" content="website">
-
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Casa dos Salgados">
     <meta name="twitter:description" content="A melhor salgadaria da região de Mogi Mirim!">
     <meta name="twitter:image" content="{{ asset('images/logo.png') }}">
-    <link rel="stylesheet" href="{{ asset('css/formatacao.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="text-gray-800 font-sans" style="background-image: url('/images/bg.jpg'); background-size: cover; background-position: center;">
+    <!-- botão voltar para página inicial -->
+    <a href="{{ route('user.index') }}"
+        class="fixed top-4 left-4 bg-orange-500 text-white p-3 rounded-full shadow-lg hover:bg-orange-600 transition">
+        <i class="fa fa-home"></i>
+    </a>
 
-    <!--Inicio do Home-->
-    <header class="max-width " id="home">
-        <div class="container">
-            <div class="menu">
-                <div class="logo" id="logo"></div>
-                <div class="desktop-menu">
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">Sobre</a></li>
-                        <li><a href="#services">Serviços</a></li>
-                        <li><a href="{{ url(path: '/menu') }}">Menu</a></li>
-                        <li><a href="#contato">Contato</a></li>
+    <!-- Sobre Nós -->
+    <section class="max-w-5xl mx-auto py-12 px-4">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h2 class="text-3xl font-bold text-orange-500 underline underline-offset-8 mb-4">Sobre Nós</h2>
+                <p class="text-lg text-gray-700 mb-4">
+                    A Casa dos Salgados é uma empresa familiar que começou com a paixão por salgados. Oferecemos
+                    diversos salgados excepcionais e uma experiência única para todos os clientes! Você vai amar!
+                </p>
+            </div>
+            <div class="flex justify-center">
+                <!-- Substitua pelo logo ou imagem do local -->
+                <img src="images/logo.png" alt="Casa dos Salgados"
+                    class="w-56 h-56 object-contain rounded-xl shadow-lg bg-white p-4">
+            </div>
+        </div>
+    </section>
 
+    <!-- Salgados Fritos -->
+    <section class="max-w-5xl mx-auto py-8 px-4">
+        <h3 class="text-2xl font-semibold text-orange-500 underline underline-offset-8 mb-6">Salgados Fritos</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/salgados/coxinha.jpg" alt="Coxinha" class="w-40 h-40 mb-3 object-contain rounded-xl">
+                <p class="font-medium text-gray-800">Coxinha</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/salgados/bolinha-de-queijo.jpg" alt="Bolinha de Queijo"
+                    class="w-40 h-40 mb-3  rounded-xl">
+                <p class="font-medium text-gray-800">Bolinha de Queijo</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/salgados/presunto.jpg" alt="Presunto" class="w-40 h-40 mb-3 object-contain rounded-xl">
+                <p class="font-medium text-gray-800">Presunto</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/salgados/alho.jpg" alt="Queijo com Alho" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Queijo com Alho</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/salgados/milho.jpg" alt="Milho com Catupiry" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Milho com Catupiry</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/salgados/calabresa.png" alt="Calabresa" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Calabresa</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/salgados/salsicha.jpg" alt="Salsicha" class="w-40 h-40 mb-3 object-contain rounded-xl">
+                <p class="font-medium text-gray-800">Salsicha</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/salgados/croquete.jpg" alt="Croquete" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Croquete</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/salgados/kibe.jpeg" alt="Kibe" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Kibe</p>
+            </div>
+        </div>
+    </section>
 
-                    </ul>
+    <!-- Salgados Assados -->
+    <section class="max-w-5xl mx-auto py-8 px-4">
+        <h3 class="text-2xl font-semibold text-orange-500 underline underline-offset-8 mb-6">Salgados Assados</h3>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/assados/jardineira.jpg" alt="Jardineira" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Jardineira</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/assados/mistao.jpeg" alt="Misto" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Mistão</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/assados/Hamburguer.jpg" alt="Hamburguer" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Hamburguer</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/assados/carne.jpeg" alt="Carne" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Carne</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/assados/frango.jpg" alt="Frango" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Frango</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/assados/calabresa.jpg" alt="Calabresa" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Calabresa</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/assados/salsicha.jpg" alt="Salsicha" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Salsicha</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/assados/palmito.jpg" alt="Palmito" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Palmito</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                <img src="images/assados/brocolis.jpg" alt="Brócolis" class="w-40 h-40 mb-3 rounded-xl">
+                <p class="font-medium text-gray-800">Brócolis</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ofertas / Serviços -->
+    <section class="bg-orange-50 py-12" id="services">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <span class="text-orange-500 text-xl font-bold">Ofertas</span>
+                <h2 class="text-3xl font-semibold text-gray-800 mt-2">Nossos Serviços</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                    <i class="fa fa-trophy text-4xl text-orange-500 mb-4"></i>
+                    <h3 class="font-semibold text-lg mb-2 text-gray-800 text-center">A melhor salgadaria da região
+                        centro mogi-miriano!</h3>
+                    <p class="text-gray-600 text-center">Salgadaria destaque na região!</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                    <i class="fa-solid fa-burger text-4xl text-orange-500 mb-4"></i>
+                    <h3 class="font-semibold text-lg mb-2 text-gray-800 text-center">Temos uma variedade de salgados
+                        para todos os gostos!</h3>
+                    <p class="text-gray-600 text-center">Experimente nosso típico salgadinho de alho!</p>
+                </div>
+                <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+                    <i class="fa fa-motorcycle text-4xl text-orange-500 mb-4"></i>
+                    <h3 class="font-semibold text-lg mb-2 text-gray-800 text-center">Também oferecemos serviço
+                        drive-thru</h3>
+                    <p class="text-gray-600 text-center">Consuma nossos salgados no conforto da sua casa!</p>
                 </div>
             </div>
-
-            <div class="local"></div>
-            <div class="grid h-48 grid-cols-2 place-content-between gap-4 ... meio " id="grid">
-                <div class=""> <span class="color-laranja text-title underline underline-offset-8 ">Sobre Nós</span>
-                    <p class="text-md color-cinza-1 espaco1">A Casa dos Salgados é uma empresa familiar que começou com
-                        a paixão
-                        por salgados. Oferecemos diversos salgados excepcionais e uma experiência única para todos os
-                        clientes! Você vai amar!</p>
-                </div>
-                <div>
-                    <div class="salgadaria espaco2 "></div>
-                </div>
-                <div class="conjunto "></div>
-                <div class="explicacao "> <span class="color-laranja text-title underline underline-offset-8 meio ">Salgados Fritos</span>
-                    <p class="text-md color-cinza-1">A lanchonete Casa dos salgados, depois de se mudar da rua... foi
-                        para a rua Doutor Ulhoua Cintra, tentar novas experiências e mudou dos salgados normais e
-            </div>
         </div>
+    </section>
 
-             <div class="grid h-48 grid-cols-2 place-content-between gap-4 ... salgados " id="grid">
-                <div> <span class="color-laranja text-title underline underline-offset-8 ">Sobre Nós</span>
-                    <p class="text-md color-cinza-1 espaco1">A Casa dos Salgados é uma empresa familiar que começou com
-                        a paixão
-                        por salgados. Oferecemos diversos salgados excepcionais e uma experiência única para todos os
-                        clientes! Você vai amar!</p>
-                </div>
-                <div>
-                    <div class="pastel espaco2 "></div>
-                </div>
-                
-                <div class="kuat "></div>
-                <div class="explicacao"> <span class="color-laranja text-title underline underline-offset-8 salgados ">Salgados Fritos</span>
-                    <p class="text-md color-cinza-1">A lanchonete Casa dos salgados, depois de se mudar da rua... foi
-                        para a rua Doutor Ulhoua Cintra, tentar novas experiências e mudou dos salgados normais e
-            </div>
-       
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-100 py-8 mt-12">
+        <div class="max-w-5xl mx-auto px-4 flex flex-col items-center">
+            <img src="images/logo.png" alt="Casa dos Salgados" class="w-24 h-24 mb-4 object-contain">
+            <p class="text-sm mb-2">Copyright 2025 <span class="text-orange-400">Casa dos Salgados</span> Todos Direitos Reservados </p>
+            <p class="text-sm mb-1">Tel: (19)99635-9428</p>
+            <p class="text-sm">E-mail: casadossalgadosmm@hotmail.com.br</p>
         </div>
+    </footer>
 
-     
-       <div> <span class="color-laranja  underline underline-offset-8 logo-fritos">Salgados Fritos</span>
+    <!-- Botão Voltar ao Topo -->
+    <button id="back-to-top"
+        class="fixed bottom-6 right-6 bg-orange-500 text-white p-3 rounded-full shadow-lg hover:bg-orange-600 transition hidden z-50">
+        <i class="fa fa-arrow-up"></i>
+    </button>
 
-        <div class="flex items-stretch md:items-center ... fritos">
-            <div class="py-4">
-                <p class="text-md color-cinza-1 coxa">Coxinha
-                <div class="coxinha "></div>
-                </p>
-            </div>
-            
-            <div class="py-12">
-                
-                <p class="text-md color-cinza-1 pastelaria boli">Bolinha De Queijo
-                <div class="bolinha"></div>
-                </p>
-            </div>
-            <div class="py-8">
-                <p class="text-md color-cinza-1 pastelaria pre">presunto</p>
-                <div class="presunto"></div>
-            </div>
-        </div>
-
-
-
-        <div class="flex items-stretch md:items-center ... ">
-            <div class="py-4">
-                <p class="text-md color-cinza-1 pastelaria">Queijo Com Alho
-                <div class="alho "></div>
-                </p>
-            </div>
-            <div class="py-12">
-                <p class="text-md color-cinza-1 pastelaria">Milho Com Catupiry
-                <div class="milho"></div>
-                </p>
-            </div>
-            <div class="py-8">
-                <p class="text-md color-cinza-1 pastelaria">Calabresa</p>
-                <div class="calabresa"></div>
-            </div>
-        </div>
-
-
-
-        <div class="flex items-stretch md:items-center ... assadao ">
-            <div class="py-4">
-                <p class="text-md color-cinza-1 pastelaria">Salsicha
-                <div class="salsicha "></div>
-                </p>
-            </div>
-            <div class="py-12">
-                <p class="text-md color-cinza-1 pastelaria">Croquete
-                <div class="croquete"></div>
-                </p>
-            </div>
-            <div class="py-8">
-                <p class="text-md color-cinza-1 pastelaria">Kibe</p>
-                <div class="kibe"></div>
-            </div>
-        </div>
-
-
-         <span class="color-laranja  underline underline-offset-8 logo-fritos assadao">Salgados Assados</span> 
-
-          <div class="flex items-stretch md:items-center ... fritos">
-            <div class="py-4">
-                <p class="text-md color-cinza-1 coxa">jardineira
-                <div class="jardineira "></div>
-                </p>
-            </div>
-            
-            <div class="py-12">
-                
-                <p class="text-md color-cinza-1 pastelaria boli">misto
-                <div class="misto"></div>
-                </p>
-            </div>
-            <div class="py-8">
-                <p class="text-md color-cinza-1 pastelaria pre">hamburguer</p>
-                <div class="hamburg"></div>
-            </div>
-        </div>
-
-
-
-        <div class="flex items-stretch md:items-center ... ">
-            <div class="py-4">
-                <p class="text-md color-cinza-1 pastelaria">carne
-                <div class="carne "></div>
-                </p>
-            </div>
-            <div class="py-12">
-                <p class="text-md color-cinza-1 pastelaria">frango
-                <div class="frango"></div>
-                </p>
-            </div>
-            <div class="py-8">
-                <p class="text-md color-cinza-1 pastelaria">Calabresa</p>
-                <div class="calabresa"></div>
-            </div>
-        </div>
-
-
-
-        <div class="flex items-stretch md:items-center ... ">
-            <div class="py-4">
-                <p class="text-md color-cinza-1 pastelaria">salsicha
-                <div class="salsicha "></div>
-                </p>
-            </div>
-            <div class="py-12">
-                <p class="text-md color-cinza-1 pastelaria">palmito
-                <div class="palmito"></div>
-                </p>
-            </div>
-            <div class="py-8">
-                <p class="text-md color-cinza-1 pastelaria">brocolis</p>
-                <div class="brocolis"></div>
-            </div>
-        </div>
-
-
-        <!--Inicio do Service-->
-        <section class="max-width" id="services">
-            <div class="content">
-                <div class="titulo">
-                    <span class="color-laranja text-title">Ofertas</span>
-                    <h2 class="color-cinza-1 text-md">Nossos Serviços</h2>
-                </div>
-                <div class="down">
-                    <div class="box">
-                        <i class="fa fa-cutlery text-gd color-laranja" aria-hidden="true"></i>
-                        <h2> A melhor salgadaria da região centro mogi-miriano!</h2>
-                        <p>Salgadaria destaque na região!</p>
-                    </div>
-                    <div class="box">
-                        <i class="fa-solid fa-burger text-gd color-laranja"></i>
-                        <h2> Temos uma variedade de salgados para todos os gostos!</h2>
-                        <p>Experimente nosso típico salgadinho de alho!</p>
-                    </div>
-                    <div class="box">
-                        <i class="fa fa-motorcycle text-gd color-laranja" aria-hidden="true"></i>
-                        <h2>Também oferecemos serviço drive-thru</h2>
-                        <p>Consuma nossos salgados no conforto da sua casa!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!--Inicio do Footer-->
-        <footer id="contato">
-            <div class="container">
-                <img src="images/logo.png" alt="">
-                <p class="text-pq">Copyright 2025 <span class="color-laranja">Casa dos Salgados</span> All Rights
-                    Reserved
-                </p>
-                <p>Tel: (19)99635-9428</p>
-                <p>E-mail:casadossalgadosmm@hotmail.com.br</p>
-            </div>
-        </footer>
-        <script>
-
-            //Botão para voltar ao topo
-            var btn = document.querySelector("#back-to-top");
-            window.onscroll = function () {
-                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    btn.style.display = "block";
-                } else {
-                    btn.style.display = "none";
-                }
-            };
-            btn.addEventListener("click", function () {
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            });
-        </script>
+    <script>
+        //Botão para voltar ao topo
+        var btn = document.querySelector("#back-to-top");
+        window.onscroll = function () {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                btn.style.display = "block";
+            } else {
+                btn.style.display = "none";
+            }
+        };
+        btn.addEventListener("click", function () {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        });
+    </script>
 </body>
 
 </html>

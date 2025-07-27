@@ -59,13 +59,18 @@ class PedidoController extends Controller
                 $data['telefone'] = $request->telefone;
             }
 
-            Pedido::create($data);
+            $pedido = Pedido::create($data);
+
+            session()->put('pedido_id', $pedido->id); // PERSISTENTE
 
             if ($tipoPedido === 'delivery') {
-                return redirect()->route('user.pagamento')->with('success', 'Pedido realizado! Faça o pagamento.');
+                return redirect()->route('user.index')
+                    ->with('success', 'Pedido realizado! Faça o pagamento.');
             } else {
-                return redirect()->route('user.index')->with('success', 'Pedido realizado com sucesso! Aguarde na sua mesa.');
+                return redirect()->route('user.index')
+                    ->with('success', 'Pedido realizado com sucesso! Aguarde na sua mesa.');
             }
+
         } catch (\Exception $e) {
             \Log::error('Erro ao salvar pedido', ['exception' => $e]);
             return back()->withErrors(['Ocorreu um erro ao processar seu pedido. Tente novamente mais tarde.']);
