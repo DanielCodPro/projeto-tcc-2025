@@ -47,6 +47,11 @@ Route::get('/logout', function () {
 Route::get('/auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('/auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
+// Página que requisita o telefone de usuário que logaram com conta Google
+Route::get('/telefone', [GoogleController::class, 'formTelefone'])->name('user.telefone');
+Route::post('/telefone', [GoogleController::class, 'salvarTelefone'])->name('user.salvarTelefone');
+
+
 // Páginas do usuário
 Route::get('/index', [UsuarioController::class, 'index'])->name('user.index');
 Route::get('/menu', [MenuController::class, 'index'])->name('user.menu');

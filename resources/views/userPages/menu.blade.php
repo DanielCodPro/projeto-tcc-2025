@@ -52,10 +52,10 @@
             <h2 class="text-4xl font-extrabold mb-10 text-center tracking-tight drop-shadow">Cardápio
             </h2>
 
-            <!-- Seção Alimentos -->
-            <h3 class="text-2xl font-bold text-cinza2 mb-6 mt-8 border-l-4 border-orange-400 pl-4">Alimentos</h3>
+            <!-- Seção Alimentos Fritos -->
+            <h3 class="text-2xl font-bold text-cinza2 mb-6 mt-8 border-l-4 border-orange-400 pl-4">Frito</h3>
             <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                @forelse ($produtos->where('tipo', 'alimento') as $produto)
+                @forelse ($produtos->where('tipo', 'frito') as $produto)
                     <li
                         class="bg-white/95 p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all flex flex-col items-center border border-orange-100 h-full">
                         @if ($produto->imagem)
@@ -67,25 +67,68 @@
                                 <i class="fas fa-utensils text-3xl"></i>
                             </div>
                         @endif
+
                         <h3 class="text-xl font-bold text-laranja mb-1 text-center">{{ $produto->nome }}</h3>
                         <p class="text-gray-700 font-semibold text-lg mb-1">R$
-                            {{ number_format($produto->preco, 2, ',', '.') }}
-                        </p>
+                            {{ number_format($produto->preco, 2, ',', '.') }}</p>
+
                         @if ($produto->descricao)
                             <p class="text-sm text-gray-500 mb-2 text-center">{{ $produto->descricao }}</p>
                         @endif
 
-                        @if ($produto->quantidade <= 0)
-                            <p class="text-red-600 font-semibold mt-4">Produto em falta</p>
-                        @else
-                            <button onclick="adicionarAoCarrinho('{{ $produto->nome }}', {{ $produto->preco }})"
-                                class="mt-4 bg-gray-400 hover:bg-orange-400 hover:text-white border-2 border-gray-100 text-white px-6 py-2 rounded-full font-bold shadow transition-all">
-                                <i class="fas fa-cart-plus mr-2"></i>Adicionar ao Carrinho
-                            </button>
-                        @endif
+                        <div class="flex flex-col justify-end mt-auto w-full">
+                            <div class="flex items-center justify-between mt-4 gap-2">
+                                <input type="number" min="1" value="1"
+                                    class="quantidade w-16 text-center border border-gray-300 rounded-full px-2 py-1 text-sm" />
+                                <button onclick="adicionarProduto(this, '{{ $produto->nome }}', {{ $produto->preco }})"
+                                    class="flex-1 bg-gray-400 hover:bg-orange-400 hover:text-white border-2 border-gray-100 text-white px-4 py-2 rounded-full font-bold shadow transition-all text-sm">
+                                    <i class="fas fa-cart-plus mr-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
                     </li>
                 @empty
                     <li class="text-white italic col-span-full text-center">Nenhum alimento disponível.</li>
+                @endforelse
+            </ul>
+
+            <!-- Seção Alimentos Assados -->
+            <h3 class="text-2xl font-bold text-cinza2 mb-6 mt-12 border-l-4 border-orange-400 pl-4">Assado</h3>
+            <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                @forelse ($produtos->where('tipo', 'assado') as $produto)
+                    <li
+                        class="bg-white/95 p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all flex flex-col items-center border border-orange-100 h-full">
+                        @if ($produto->imagem)
+                            <img src="{{ asset('storage/' . $produto->imagem) }}" alt="{{ $produto->nome }}"
+                                class="w-28 h-28 object-cover rounded-full border-4 border-laranja shadow mb-4">
+                        @else
+                            <div
+                                class="w-28 h-28 flex items-center justify-center bg-gray-100 rounded-full border-4 border-gray-200 mb-4 text-gray-400">
+                                <i class="fas fa-utensils text-3xl"></i>
+                            </div>
+                        @endif
+
+                        <h3 class="text-xl font-bold text-laranja mb-1 text-center">{{ $produto->nome }}</h3>
+                        <p class="text-gray-700 font-semibold text-lg mb-1">R$
+                            {{ number_format($produto->preco, 2, ',', '.') }}</p>
+
+                        @if ($produto->descricao)
+                            <p class="text-sm text-gray-500 mb-2 text-center">{{ $produto->descricao }}</p>
+                        @endif
+
+                        <div class="flex flex-col justify-end mt-auto w-full">
+                            <div class="flex items-center justify-between mt-4 gap-2">
+                                <input type="number" min="1" value="1"
+                                    class="quantidade w-16 text-center border border-gray-300 rounded-full px-2 py-1 text-sm" />
+                                <button onclick="adicionarProduto(this, '{{ $produto->nome }}', {{ $produto->preco }})"
+                                    class="flex-1 bg-gray-400 hover:bg-orange-400 hover:text-white border-2 border-gray-100 text-white px-4 py-2 rounded-full font-bold shadow transition-all text-sm">
+                                    <i class="fas fa-cart-plus mr-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                @empty
+                    <li class="text-white italic col-span-full text-center">Nenhum alimento assado disponível.</li>
                 @endforelse
             </ul>
 
@@ -97,29 +140,32 @@
                         class="bg-white/95 p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all flex flex-col items-center border border-orange-100 h-full">
                         @if ($produto->imagem)
                             <img src="{{ asset('storage/' . $produto->imagem) }}" alt="{{ $produto->nome }}"
-                                class="w-28 h-28 object-cover rounded-full border-4 shadow mb-4">
+                                class="w-28 h-28 object-cover rounded-full border-4 border-laranja shadow mb-4">
                         @else
                             <div
                                 class="w-28 h-28 flex items-center justify-center bg-gray-100 rounded-full border-4 border-gray-200 mb-4 text-gray-400">
-                                <i class="fas fa-glass-martini-alt text-3xl"></i>
+                                <i class="fas fa-utensils text-3xl"></i>
                             </div>
                         @endif
+
                         <h3 class="text-xl font-bold text-laranja mb-1 text-center">{{ $produto->nome }}</h3>
                         <p class="text-gray-700 font-semibold text-lg mb-1">R$
-                            {{ number_format($produto->preco, 2, ',', '.') }}
-                        </p>
+                            {{ number_format($produto->preco, 2, ',', '.') }}</p>
+
                         @if ($produto->descricao)
                             <p class="text-sm text-gray-500 mb-2 text-center">{{ $produto->descricao }}</p>
                         @endif
 
-                        @if ($produto->quantidade <= 0)
-                            <p class="text-red-600 font-semibold mt-4">Produto em falta</p>
-                        @else
-                            <button onclick="adicionarAoCarrinho('{{ $produto->nome }}', {{ $produto->preco }})"
-                                class="mt-4 bg-gray-400 hover:bg-orange-400 hover:text-white border-2 border-gray-100 text-white px-6 py-2 rounded-full font-bold shadow transition-all">
-                                <i class="fas fa-cart-plus mr-2"></i>Adicionar ao Carrinho
-                            </button>
-                        @endif
+                        <div class="flex flex-col justify-end mt-auto w-full">
+                            <div class="flex items-center justify-between mt-4 gap-2">
+                                <input type="number" min="1" value="1"
+                                    class="quantidade w-16 text-center border border-gray-300 rounded-full px-2 py-1 text-sm" />
+                                <button onclick="adicionarProduto(this, '{{ $produto->nome }}', {{ $produto->preco }})"
+                                    class="flex-1 bg-gray-400 hover:bg-orange-400 hover:text-white border-2 border-gray-100 text-white px-4 py-2 rounded-full font-bold shadow transition-all text-sm">
+                                    <i class="fas fa-cart-plus mr-2"></i>Adicionar
+                                </button>
+                            </div>
+                        </div>
                     </li>
                 @empty
                     <li class="text-white italic col-span-full text-center">Nenhuma bebida disponível.</li>
@@ -203,6 +249,12 @@
                 checkoutBtn.classList.remove('opacity-50', 'pointer-events-none');
             }
         }
+          function adicionarProduto(btn, nome, preco) {
+        const input = btn.parentElement.querySelector('.quantidade');
+        const quantidade = parseInt(input.value) || 1;
+        adicionarAoCarrinho(nome, preco, quantidade);
+        input.value = 1; // Reseta o campo de quantidade após adicionar
+    }
 
         window.onload = atualizarCarrinho;
     </script>

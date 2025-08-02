@@ -5,12 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Produtos</title>
+    <title>Adicionar Produtos - Casa dos Salgados</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="min-h-screen flex items-center justify-center px-4 py-10" style="background-image: url('/images/bg.jpg');">
-    <div class="absolute inset-0 bg-black/40 z-0"></div>
+    <div class="fixed top-0 left-0 w-full min-h-screen bg-black/40 z-0"></div>
     <div class="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl border border-gray-200 z-10">
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">➕ Adicionar Produto</h1>
 
@@ -46,17 +46,12 @@
             </div>
 
             <div>
-                <label for="quantidade" class="block text-gray-700 font-semibold">Quantidade:</label>
-                <input type="number" min="1" name="quantidade" id="quantidade" value="{{ old('quantidade') }}" required
-                    class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
-            </div>
-
-            <div>
                 <label for="tipo" class="block text-gray-700 font-semibold">Tipo:</label>
                 <select name="tipo" id="tipo" required
                     class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
                     <option value="">Selecione...</option>
-                    <option value="alimento" {{ old('tipo') == 'alimento' ? 'selected' : '' }}>Alimento</option>
+                    <option value="frito" {{ old('tipo') == 'frito' ? 'selected' : '' }}>Frito</option>
+                    <option value="assado" {{ old('tipo') == 'assado' ? 'selected' : '' }}>Assado</option>
                     <option value="bebida" {{ old('tipo') == 'bebida' ? 'selected' : '' }}>Bebida</option>
                 </select>
             </div>

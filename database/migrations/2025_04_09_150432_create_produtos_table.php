@@ -15,9 +15,8 @@ return new class extends Migration {
             $table->string('nome');
             $table->text('descricao')->nullable();
             $table->decimal('preco', 10, 2);
-            $table->integer('quantidade')->default(0);
             $table->string('imagem')->nullable();
-            $table->enum('tipo', ['alimento', 'bebida', null])->default(null);
+            $table->enum('tipo', ['frito', 'assado', 'bebida', null])->default(null);
             $table->timestamps();
         });
     }

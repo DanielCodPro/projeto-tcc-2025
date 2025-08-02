@@ -98,7 +98,7 @@
             placeholder="seu@email.com">
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Telefone (opcional)</label>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Telefone</label>
           <input type="text" name="telefone"
             class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 shadow-sm"
             placeholder="(11) 99999-9999">

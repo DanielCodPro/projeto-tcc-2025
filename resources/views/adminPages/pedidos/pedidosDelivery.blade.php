@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pedidos Delivery</title>
+    <title>Pedidos Delivery - Casa dos Salgados</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @media print {
@@ -32,8 +32,9 @@
     </style>
 </head>
 
-<body class="bg-gray-400 text-gray-800 font-sans">
-    <div class="container mx-auto p-6">
+<body class="text-gray-800 font-sans" style="background-image: url('/images/bg.jpg');">
+    <div class="absolute inset-0 bg-black/40 z-0"></div>
+    <div class="container mx-auto p-6 z-10 relative">
         <h1 class="text-3xl font-bold text-orange-600 text-center mb-8">Pedidos Delivery</h1>
 
         @foreach ($pedidos as $pedido)
@@ -59,7 +60,11 @@
                     </ul>
                 </div>
 
-                <p id="total-{{ $pedido->id }}" class="text-base font-bold text-orange-600 mb-4">Total: R$ 0,00</p>
+                <p id="total-{{ $pedido->id }}" class="text-base font-bold text-orange-600 mb-4">
+                    Total: R$ {{ number_format(collect($itens)->sum(function ($i) {
+                        return $i['preco'] * $i['quantidade'];
+                    }), 2, ',', '.') }}
+                </p>
 
                 <form method="POST" action="/pedidos/{{ $pedido->id }}/status"
                     class="flex flex-col sm:flex-row gap-3 sm:items-center">
@@ -97,7 +102,8 @@
                     @if (is_array($itens))
                         @foreach ($itens as $item)
                             <li>{{ $item['nome'] }} - R$ {{ number_format($item['preco'], 2, ',', '.') }} - Qtd:
-                                {{ $item['quantidade'] }}</li>
+                                {{ $item['quantidade'] }}
+                            </li>
                         @endforeach
                     @else
                         <li>Erro ao carregar itens</li>

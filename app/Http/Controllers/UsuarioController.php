@@ -14,7 +14,7 @@ class UsuarioController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'telefone' => 'nullable|string|max:20',
+            'telefone' => 'required|string|max:20',
         ]);
 
         $usuario = Usuario::where('email', $request->email)->first();
@@ -68,7 +68,7 @@ class UsuarioController extends Controller
         $request->validate([
             'nome' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'telefone' => 'nullable|string|max:20',
+            'telefone' => 'required|string|max:20',
         ]);
 
         $usuario->update([

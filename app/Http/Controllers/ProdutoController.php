@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $produtos = Produto::all();
+        $query = Produto::query();
+
+        if ($request->filled('busca')) {
+            $query->where('nome', 'like', '%' . $request->busca . '%');
+        }
+
+        $produtos = $query->orderBy('id', 'desc')->get();
+
         return view('adminPages.produtos.index', compact('produtos'));
     }
 
@@ -26,9 +33,8 @@ class ProdutoController extends Controller
             'nome' => 'required|string|max:255|unique:produtos,nome',
             'descricao' => 'nullable|string|unique:produtos,descricao',
             'preco' => 'required|numeric|min:0.01',
-            'quantidade' => 'required|integer|min:1',
             'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'tipo' => 'required|in:alimento,bebida',
+            'tipo' => 'required|in:frito,assado,bebida',
         ]);
 
         $dados = $request->all();
@@ -58,13 +64,22 @@ class ProdutoController extends Controller
             'nome' => 'required|string|max:255|unique:produtos,nome,' . $id,
             'descricao' => 'nullable|string|unique:produtos,descricao,' . $id,
             'preco' => 'required|numeric|min:0.01',
-            'quantidade' => 'required|integer|min:1',
             'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'tipo' => 'required|in:alimento,bebida',
+            'tipo' => 'required|in:frito,assado,bebida',
         ]);
 
         $produto = Produto::findOrFail($id);
-        $produto->update($request->all());
+
+        $dados = $request->only(['nome', 'descricao', 'preco', 'tipo']);
+
+        // Verifica se foi feito um novo upload de imagem
+        if ($request->hasFile('imagem')) {
+            $imagem = $request->file('imagem')->store('produtos', 'public');
+            $dados['imagem'] = $imagem;
+        }
+
+        // Atualiza os campos (com ou sem nova imagem)
+        $produto->update($dados);
         return redirect()->route('produtos.index')->with('success', 'Produto atualizado!');
     }
 

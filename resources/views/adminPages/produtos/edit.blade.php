@@ -5,12 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Produto</title>
+    <title>Editar Produto - Casa dos Salgados</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="min-h-screen flex items-center justify-center px-4 py-10" style="background-image: url('/images/bg.jpg');">
-    <div class="absolute inset-0 bg-black/40 z-0"></div>
+    <div class="fixed top-0 left-0 w-full min-h-screen bg-black/40 z-0"></div>
 
     <div class="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl border border-gray-200 z-10">
         <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">✏️ Editar Produto</h1>
@@ -47,12 +47,6 @@
             <div>
                 <label for="preco" class="block text-gray-700 font-semibold">Preço:</label>
                 <input type="number" step="0.01" name="preco" id="preco" value="{{ $produto->preco }}" required
-                    class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
-            </div>
-
-            <div>
-                <label for="quantidade" class="block text-gray-700 font-semibold">Quantidade:</label>
-                <input type="number" name="quantidade" id="quantidade" value="{{ $produto->quantidade }}" required
                     class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
             </div>
 
