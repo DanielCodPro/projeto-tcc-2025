@@ -69,12 +69,12 @@ Route::get('/checkout', function () {
     ]);
 })->name('user.checkout');
 
-// Pagamento
 Route::prefix('/pagamento')->group(function () {
-    Route::get('/checkout', [PagamentoController::class, 'checkout']);
-    Route::get('/sucesso', [PagamentoController::class, 'sucesso']);
-    Route::get('/falha', [PagamentoController::class, 'falha']);
-    Route::get('/pendente', [PagamentoController::class, 'pendente']);
+    Route::get('/checkout', [PagamentoController::class, 'checkout'])->name('checkout.pagamento'); // tela de pagamento
+    Route::post('/processar', [PagamentoController::class, 'processar'])->name('processar.pagamento'); // processar o pagamento
+    Route::get('/sucesso', [PagamentoController::class, 'sucesso'])->name('sucesso.pagamento');
+    Route::get('/falha', [PagamentoController::class, 'falha'])->name('falha.pagamento');
+    Route::get('/pendente', [PagamentoController::class, 'pendente'])->name('pendente.pagamento');
 });
 
 
