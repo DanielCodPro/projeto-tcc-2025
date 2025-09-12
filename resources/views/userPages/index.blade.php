@@ -5,6 +5,15 @@
     if (session()->has('usuario_id')) {
         $usuario = Usuario::find(session('usuario_id'));
     }
+
+    $pedido = null;
+    if (session()->has('pedido_id')) {
+        $pedido = \App\Models\Pedido::find(session('pedido_id'));
+        if ($pedido && $pedido->status === 'entregue') {
+            session()->forget('pedido_id');
+            $pedido = null;
+        }
+    }
 @endphp
 
 <!DOCTYPE html>
@@ -47,6 +56,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=order_approve" />
+
+    <link rel="icon" type="image/png" href="{{ asset('images/ícone.png') }}">
 </head>
 
 <body>
@@ -64,8 +75,6 @@
                             @else
                                 <p class="text-gray-700">Visitante</p>
                             @endif
-
-                            <a href="{{ route('logout') }}">Sair</a>
                         </div>
                     </div>
 
@@ -77,6 +86,7 @@
                             <li><a href="#services">Serviços</a></li>
                             <li><a href="{{ url('/menu') }}">Menu</a></li>
                             <li><a href="#contato">Contato</a></li>
+                            <li><a href="{{ route('logout')}}">Sair</a></li>
                         </ul>
                     </div>
                 </div>
@@ -95,7 +105,7 @@
                 </div>
             </div>
             <button id="back-to-top">^</button>
-            @if(isset($pedido))
+            @if(isset($pedido) && $pedido->status !== 'entregue')
                 <!-- Overlay escuro -->
                 <div id="overlay" class="hidden overlay-bg"></div>
 
@@ -149,6 +159,28 @@
         </div>
     </section>
 
+    <!--Inicio da Localização(section que contém a localização da salgadaria)-->
+    <section class="max-width" id="localizacao">
+        <div class="container">
+            <div class="call">
+                <div class="left">
+                    <span class="color-laranja">Localização</span>
+                    <h2 class="color-cinza-1 text-md">Onde nos encontrar?</h2>
+                    <p class="text-pq">Estamos localizados no centro de Mogi Mirim, na Rua Dr. Ulhôa Cintra, 665. Venha
+                        nos visitar e experimentar nossos deliciosos salgados!</p>
+                    <button onclick="window.open('https://maps.app.goo.gl/Sgid9TsVN39qze5F9', '_blank')">Ver no
+                        Mapa</button>
+                </div>
+                <div class="right">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3687.8685332453274!2d-46.9566726!3d-22.433973500000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c8f9182b395a11%3A0x889abd9fe7282096!2sCasa%20dos%20Salgados!5e0!3m2!1spt-BR!2sbr!4v1757452772087!5m2!1spt-BR!2sbr"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!--Inicio do Service-->
     <section class="max-width" id="services">
         <div class="content">
@@ -181,8 +213,15 @@
         <div class="container">
             <img src="images/logo.png" alt="">
             <p class="text-pq"> © 2025 <span>Casa dos Salgados</span> Todos Direitos Reservados</p>
-            <p id="tel">Tel: (19)99635-9428</p>
-            <p id="email">Email: casadossalgadosmm@hotmail.com.br</p>
+            <div class="info">
+                <p id="tel"><i class="fa fa-phone-square" aria-hidden="true"></i>
+                    Tel: (19)99635-9428</p>
+                <a id="facebook" href="{{ url('https://www.facebook.com/casadossalgadosMM/?locale=pt_BR') }}"><i
+                        class="fa-brands fa-facebook-f"></i>
+                    Facebook</a>
+                <p id="email"><i class="fa fa-envelope" aria-hidden="true"></i>
+                    casadossalgadosmm@hotmail.com.br</p>
+            </div>
         </div>
     </footer>
     <script>

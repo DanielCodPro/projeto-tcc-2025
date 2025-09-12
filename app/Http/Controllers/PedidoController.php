@@ -61,10 +61,10 @@ class PedidoController extends Controller
 
             $pedido = Pedido::create($data);
 
-            session()->put('pedido_id', $pedido->id); // PERSISTENTE
+            session()->put('pedido_id', $pedido->id); 
 
             if ($tipoPedido === 'delivery') {
-                return redirect()->route('user.index')
+                return redirect()->route('checkout.pagamento')
                     ->with('success', 'Pedido realizado! Faça o pagamento.');
             } else {
                 return redirect()->route('user.index')

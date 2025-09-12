@@ -29,8 +29,10 @@ Route::post('/cadastro', function (Request $request) {
         return redirect()->route('entrar')->with('mensagem', 'Usuário já cadastrado!');
     }
 
-    Usuario::create(compact('nome', 'email', 'telefone'));
+    $usuario = Usuario::create(compact('nome', 'email', 'telefone'));
 
+    Mail::to($usuario->email)->send(new \App\Mail\WelcomeEmail($usuario));
+    
     return redirect()->route('entrar')->with('mensagem', 'Cadastro realizado com sucesso! Faça login para continuar.');
 })->name('cadastro.submit');
 

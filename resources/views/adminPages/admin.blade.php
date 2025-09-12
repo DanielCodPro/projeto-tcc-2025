@@ -30,11 +30,13 @@
       }
     }
   </script>
+  <link rel="icon" type="image/png" href="{{ asset('images/ícone.png') }}">
 </head>
 
 <body class="bg-cover bg-center flex items-center justify-center min-h-screen relative font-sans"
   style="background-image: url('/images/bg.jpg');">
-  <div class="absolute inset-0 bg-black/40 z-0"></div>
+  <div class="fixed inset-0 bg-black bg-opacity-20 z-0"></div>
+
 
   <div class="relative z-10 w-full max-w-md p-6 bg-white/95 rounded-2xl shadow-lg border border-orange-400">
     <h1 class="text-3xl font-bold text-center text-orange-500 mb-6">Painel Administrativo</h1>

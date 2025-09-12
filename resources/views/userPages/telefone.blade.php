@@ -25,6 +25,8 @@
             color: #fa5e00;
         }
     </style>
+
+    <link rel="icon" type="image/png" href="{{ asset('images/ícone.png') }}">
 </head>
 
 <body class="bg-gray-100">

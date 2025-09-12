@@ -7,6 +7,8 @@
     <title>Menu - Casa dos Salgados</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('images/ícone.png') }}">
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -70,7 +72,8 @@
 
                         <h3 class="text-xl font-bold text-laranja mb-1 text-center">{{ $produto->nome }}</h3>
                         <p class="text-gray-700 font-semibold text-lg mb-1">R$
-                            {{ number_format($produto->preco, 2, ',', '.') }}</p>
+                            {{ number_format($produto->preco, 2, ',', '.') }}
+                        </p>
 
                         @if ($produto->descricao)
                             <p class="text-sm text-gray-500 mb-2 text-center">{{ $produto->descricao }}</p>
@@ -110,7 +113,8 @@
 
                         <h3 class="text-xl font-bold text-laranja mb-1 text-center">{{ $produto->nome }}</h3>
                         <p class="text-gray-700 font-semibold text-lg mb-1">R$
-                            {{ number_format($produto->preco, 2, ',', '.') }}</p>
+                            {{ number_format($produto->preco, 2, ',', '.') }}
+                        </p>
 
                         @if ($produto->descricao)
                             <p class="text-sm text-gray-500 mb-2 text-center">{{ $produto->descricao }}</p>
@@ -150,7 +154,8 @@
 
                         <h3 class="text-xl font-bold text-laranja mb-1 text-center">{{ $produto->nome }}</h3>
                         <p class="text-gray-700 font-semibold text-lg mb-1">R$
-                            {{ number_format($produto->preco, 2, ',', '.') }}</p>
+                            {{ number_format($produto->preco, 2, ',', '.') }}
+                        </p>
 
                         @if ($produto->descricao)
                             <p class="text-sm text-gray-500 mb-2 text-center">{{ $produto->descricao }}</p>
@@ -195,17 +200,21 @@
 
     <!-- Scripts -->
     <script>
-        function adicionarAoCarrinho(nome, preco, quantidade = 1) {
-            let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-            let item = carrinho.find(i => i.nome === nome);
-            if (item) {
-                item.quantidade += quantidade;
-            } else {
-                carrinho.push({ nome, preco, quantidade });
+        @if (!session('usuario_id'))
+            localStorage.removeItem('carrinho');
+        @endif
+
+            function adicionarAoCarrinho(nome, preco, quantidade = 1) {
+                let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+                let item = carrinho.find(i => i.nome === nome);
+                if (item) {
+                    item.quantidade += quantidade;
+                } else {
+                    carrinho.push({ nome, preco, quantidade });
+                }
+                localStorage.setItem('carrinho', JSON.stringify(carrinho));
+                atualizarCarrinho();
             }
-            localStorage.setItem('carrinho', JSON.stringify(carrinho));
-            atualizarCarrinho();
-        }
 
         function removerItemDoCarrinho(nome) {
             let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
@@ -249,12 +258,12 @@
                 checkoutBtn.classList.remove('opacity-50', 'pointer-events-none');
             }
         }
-          function adicionarProduto(btn, nome, preco) {
-        const input = btn.parentElement.querySelector('.quantidade');
-        const quantidade = parseInt(input.value) || 1;
-        adicionarAoCarrinho(nome, preco, quantidade);
-        input.value = 1; // Reseta o campo de quantidade após adicionar
-    }
+        function adicionarProduto(btn, nome, preco) {
+            const input = btn.parentElement.querySelector('.quantidade');
+            const quantidade = parseInt(input.value) || 1;
+            adicionarAoCarrinho(nome, preco, quantidade);
+            input.value = 1; // Reseta o campo de quantidade após adicionar
+        }
 
         window.onload = atualizarCarrinho;
     </script>

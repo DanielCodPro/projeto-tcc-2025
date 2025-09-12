@@ -15,6 +15,8 @@
   <title>Login - Casa dos Salgados</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="{{ asset('images/ícone.png') }}">
+
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -128,6 +130,9 @@
       const alert = document.querySelector('.alert');
       if (alert) alert.remove();
     }, 5000);
+
+    //Limpa o carrinho ao entrar na página de login
+    localStorage.removeItem('carrinho');
   </script>
 </body>
 
