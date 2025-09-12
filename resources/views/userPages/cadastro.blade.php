@@ -30,6 +30,7 @@
       margin-right: 10px;
     }
   </style>
+  <link rel="icon" type="image/png" href="{{ asset('images/ícone.png') }}">
 </head>
 
 <body class="grid md:grid-cols-2 min-h-screen bg-gray-100">
@@ -49,7 +50,7 @@
     <div
       class="flex flex-col items-center justify-center max-w-md mx-auto text-center bg-white bg-opacity-20 rounded-xl shadow-lg p-8 backdrop-blur-sm">
       <p class="text-2xl italic font-semibold text-white drop-shadow mb-4">
-        “Ninguém nasce um ótimo cozinheiro. Se aprende fazendo.” Dona Osmara
+        “Ninguém nasce um ótimo cozinheiro. Se aprende fazendo.”
       </p>
       <hr class="border-t-4 border-yellow-400 w-16 mx-auto mb-4 opacity-70">
       <p class="text-lg text-black font-medium drop-shadow">

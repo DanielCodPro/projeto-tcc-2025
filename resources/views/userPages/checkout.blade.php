@@ -15,11 +15,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Casa dos Salgados</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="{{ asset('images/ícone.png') }}">
 </head>
 
 <body class="min-h-screen flex items-center justify-center py-8"
     style="background-image: url('/images/bg.jpg'); background-size: cover; background-position: center;">
-    <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+    <div class="fixed inset-0 bg-black bg-opacity-20 z-0"></div>
     <div class="w-full max-w-xl bg-white rounded-2xl shadow-2xl border border-gray p-10 z-0">
         <h1 class="text-3xl font-extrabold text-center text-gray-700 mb-6 tracking-widee">Finalizar Pedido</h1>
 

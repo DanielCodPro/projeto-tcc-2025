@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Produtos - Casa dos Salgados</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="{{ asset('images/ícone.png') }}">
 </head>
 
 <body class="min-h-screen flex flex-col items-center justify-start py-10 px-4"
