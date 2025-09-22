@@ -14,10 +14,13 @@ return new class extends Migration
     Schema::create('pedidos', function (Blueprint $table) {
         $table->id();
         $table->string('nome_cliente');
-        $table->string('email_cliente')->nullable();
-        $table->string('mesa');
-        $table->json('itens_pedido'); // Armazena os itens em formato JSON
-        $table->enum('status', ['pendente', 'em preparo', 'pronto', 'entregue'])->default('pendente');
+        $table->string('email_cliente');
+        $table->json('itens_pedido');
+        $table->enum('tipo_pedido', ['local', 'delivery']);
+        $table->string('mesa')->nullable();
+        $table->string('endereco')->nullable();
+        $table->string('telefone')->nullable();
+        $table->string('status')->default('pendente');
         $table->timestamps();
     });
 }

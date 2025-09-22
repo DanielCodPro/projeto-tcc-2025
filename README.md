@@ -64,3 +64,121 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+---Informações importantes--
+Passo a Passo da clonagem do repositório á a sua preparação no ambiente:
+
+Confirme se já tem uma conta no github e conversou comigo(kauan) para que eu te a adiciona-se como colaborador
+No vscode, ao entrar, clique no botão clonar repositório( na aba de explorador ou de Controle de código-fonte)
+Clique em "Clonar de GitHub"
+Clique na opção de repositório que começa com o meu nome (kauanmmartins)
+Escolha seu local de preferência para deixar o arquivo(pasta) do projeto em seu computador
+pronto, agora vc já clonou o repositório devidamente.
+
+Com o repositório clonado, verifique se já tem os seguintes requisitos em sua máquina:
+ php - como baixar(versão para windows: https://www.youtube.com/watch?v=gQ-P0yMBE9U
+ node.js e npm - baixando o node.js vc também baixa o npm - como baixar: https://www.youtube.com/watch?v=DbJlrkW63XU
+ composer - como baixar: https://www.youtube.com/watch?v=Dimtx-pQPuA
+Se após instalar, se quiser verificar se tá tudo certo, abre o prompt de comando e digita o código:
+sua_instalação -v
+Exemplo: composer -v
+
+tendo tudo baixado certinho, no vscode abra o terminal e digite:
+
+# 📦 Instala as dependências PHP
+composer install
+
+# 📦 Instala as dependências JS/CSS (Vite, Mix, etc)
+npm install
+
+pronto, espere baixar tudo e pode mexer tranquilamente
+
+---Utilizações---
+Código arquivo .env: 
+
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:IiyWSPmgDOBRjboLfxER6vbh1MQmRArcm31yGtQssIM=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=salgadaria_db
+DB_USERNAME=root
+DB_PASSWORD=sua_senha do mySQL_Workbench
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DISK=local
+QUEUE_CONNECTION=sync
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=smtp
+MAIL_HOST=mailpit
+MAIL_PORT=1025
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_HOST=
+PUSHER_PORT=443
+PUSHER_SCHEME=https
+PUSHER_APP_CLUSTER=mt1
+
+VITE_APP_NAME="${APP_NAME}"
+VITE_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+VITE_PUSHER_HOST="${PUSHER_HOST}"
+VITE_PUSHER_PORT="${PUSHER_PORT}"
+VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
+VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+
+---Comandos git e do laravel---
+# 🔄 Atualizar seu repositório local com a branch principal (por exemplo, main)
+git pull origin main
+
+# 📡 Buscar atualizações do repositório remoto (sem aplicar)
+git fetch
+
+# 🔁 Trocar de branch
+git checkout nome-da-branch
+
+# 🌿 Criar e trocar para uma nova branch
+git checkout -b nova-branch
+
+# 🔄 Atualizar e migrar banco de dados (Laravel)
+php artisan migrate
+
+# 🧨 Desfazer todas as migrations (deleta as tabelas criadas)
+php artisan migrate:reset
+
+# ▶️ Inicia o projeto no navegador
+php artisan serve
+
+
+
+

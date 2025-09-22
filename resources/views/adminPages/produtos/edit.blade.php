@@ -1,0 +1,89 @@
+<!-- resources/views/adminPages/produtos/edit.blade.php -->
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Produto - Casa dos Salgados</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="{{ asset('images/ícone.png') }}">
+</head>
+
+<body class="min-h-screen flex items-center justify-center px-4 py-10" style="background-image: url('/images/bg.jpg');">
+    <div class="fixed top-0 left-0 w-full min-h-screen bg-black/40 z-0"></div>
+
+    <div class="w-full max-w-lg bg-white p-8 rounded-xl shadow-xl border border-gray-200 z-10">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">✏️ Editar Produto</h1>
+
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <form action="{{ route('produtos.update', $produto->id) }}" method="POST" enctype="multipart/form-data"
+            class="space-y-4">
+            @csrf
+            @method('PUT')
+
+            <div>
+                <label for="nome" class="block text-gray-700 font-semibold">Nome:</label>
+                <input type="text" name="nome" id="nome" value="{{ $produto->nome }}" required
+                    class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+            </div>
+
+            <div>
+                <label for="descricao" class="block text-gray-700 font-semibold">Descrição:</label>
+                <textarea name="descricao" id="descricao" rows="3"
+                    class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">{{ $produto->descricao }}</textarea>
+            </div>
+
+            <div>
+                <label for="preco" class="block text-gray-700 font-semibold">Preço:</label>
+                <input type="number" step="0.01" name="preco" id="preco" value="{{ $produto->preco }}" required
+                    class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+            </div>
+
+            <div>
+                <label for="tipo" class="block text-gray-700 font-semibold">Tipo:</label>
+                <select name="tipo" id="tipo" required
+                    class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                    <option value="">Selecione...</option>
+                    <option value="alimento" {{ $produto->tipo == 'alimento' ? 'selected' : '' }}>Alimento</option>
+                    <option value="bebida" {{ $produto->tipo == 'bebida' ? 'selected' : '' }}>Bebida</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="imagem" class="block text-gray-700 font-semibold">Imagem do Produto:</label>
+                @if ($produto->imagem)
+                    <div class="mb-2">
+                        <img src="{{ asset('storage/' . $produto->imagem) }}" alt="Imagem atual"
+                            class="h-24 rounded shadow">
+                    </div>
+                @endif
+                <input type="file" name="imagem" id="imagem" accept="image/*"
+                    class="w-full mt-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400">
+                <small class="text-gray-500">Deixe em branco para manter a imagem atual.</small>
+            </div>
+
+            <div class="flex justify-between items-center pt-4">
+                <a href="{{ route('produtos.index') }}" class="text-sm text-gray-600 hover:underline">← Voltar para a
+                    lista</a>
+                <button type="submit"
+                    class="bg-orange-400 hover:bg-orange-500 text-black font-semibold py-2 px-6 rounded-lg transition">
+                    Atualizar
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
