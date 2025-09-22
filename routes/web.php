@@ -45,6 +45,10 @@ Route::get('/checkout', function () {
 });
 
 //rota página admin
+Route::get('/alunos', function () {
+    return view('alunos');
+});
+
 Route::get('/admin', function () {
     return view('admin');
 });
