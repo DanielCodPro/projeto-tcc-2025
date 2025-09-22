@@ -59,6 +59,7 @@ Route::get('/index', [UsuarioController::class, 'index'])->name('user.index');
 Route::get('/menu', [MenuController::class, 'index'])->name('user.menu');
 Route::get('/pagamento', fn() => view('userPages.pagamento'))->name('user.pagamento');
 Route::get('/saiba', fn() => view('userPages.saiba'))->name('user.saiba');
+Route::get('/alunos', fn() => view('userPages.alunos'))->name('user.alunos');
 
 
 
@@ -71,6 +72,7 @@ Route::get('/checkout', function () {
 Route::get('/admin', function () {
     return view('admin');
 });
+
 
 
 // ---------------------- Rotas Administrador (adminPages) ----------------------
