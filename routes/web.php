@@ -59,25 +59,20 @@ Route::get('/index', [UsuarioController::class, 'index'])->name('user.index');
 Route::get('/menu', [MenuController::class, 'index'])->name('user.menu');
 Route::get('/pagamento', fn() => view('userPages.pagamento'))->name('user.pagamento');
 Route::get('/saiba', fn() => view('userPages.saiba'))->name('user.saiba');
+Route::get('/alunos', fn() => view('userPages.alunos'))->name('user.alunos');
 
 
 
 // Checkout
 Route::get('/checkout', function () {
-    $usuario = session('usuario');
-    return view('userPages.checkout', [
-        'produtos' => Produto::all(),
-        'usuario' => $usuario,
-    ]);
-})->name('user.checkout');
-
-Route::prefix('/pagamento')->group(function () {
-    Route::get('/checkout', [PagamentoController::class, 'checkout'])->name('checkout.pagamento'); // tela de pagamento
-    Route::post('/processar', [PagamentoController::class, 'processar'])->name('processar.pagamento'); // processar o pagamento
-    Route::get('/sucesso', [PagamentoController::class, 'sucesso'])->name('sucesso.pagamento');
-    Route::get('/falha', [PagamentoController::class, 'falha'])->name('falha.pagamento');
-    Route::get('/pendente', [PagamentoController::class, 'pendente'])->name('pendente.pagamento');
+    return view('checkout');
 });
+
+//rota página admin
+Route::get('/admin', function () {
+    return view('admin');
+});
+
 
 
 // ---------------------- Rotas Administrador (adminPages) ----------------------
