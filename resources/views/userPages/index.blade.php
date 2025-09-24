@@ -94,7 +94,15 @@
                 <!-- Início do Call -->
                 <div class="call">
                     <div class="left">
-                        <img src="images/1.png" alt="">
+                        <!--slider de imagens-->
+                        <div class="slider">
+                            <div class="slides">
+                                <div class="slide"><img src="images/slider/1.png" alt="Salgado 1"></div>
+                                <div class="slide"><img src="images/slider/2.png" alt="Salgado 2"></div>
+                                <div class="slide"><img src="images/slider/3.png" alt="Salgado 3"></div>
+                                <div class="slide"><img src="images/slider/4.png" alt="Salgado 4"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="right">
                         <h1 class="color-laranja text-gd">Casa dos Salgados</h1>
@@ -153,7 +161,7 @@
 
                 </div>
                 <div class="right">
-                    <img src="images/5.jpg" alt="">
+                    <img src="images/esfirras.jpg" alt="">
                 </div>
             </div>
         </div>
@@ -221,6 +229,8 @@
                     Facebook</a>
                 <p id="email"><i class="fa fa-envelope" aria-hidden="true"></i>
                     casadossalgadosmm@hotmail.com.br</p>
+                <p id="desenvolvedores"><i class="fa fa-code" aria-hidden="true"></i>
+                    <a href="{{ url('/alunos') }}">Desenvolvedores </a></p>
             </div>
         </div>
     </footer>
