@@ -906,12 +906,12 @@ footer .info a:hover {
     .menu {
         display: flex;
         flex-direction: column;
-        align-items: center; 
+        align-items: center;
         width: 100%;
         height: auto;
-        padding: 20px 15px; 
-        gap: 20px; 
-        box-sizing: border-box; 
+        padding: 20px 15px;
+        gap: 20px;
+        box-sizing: border-box;
     }
 
     /* --- Seção superior com logo e usuário --- */
@@ -933,7 +933,7 @@ footer .info a:hover {
         align-items: center;
         gap: 8px;
         padding: 8px 16px;
-        margin: 0; 
+        margin: 0;
         min-width: 140px;
         height: 42px;
         border-radius: 20px;
@@ -956,21 +956,20 @@ footer .info a:hover {
     .desktop-menu ul {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center; 
-        align-items: center; 
+        justify-content: center;
+        align-items: center;
         gap: 8px 12px;
         margin: 0;
         padding: 0;
-        list-style: none; 
+        list-style: none;
     }
 
     .desktop-menu ul li a {
-        display: inline-block; 
-        padding: 8px 16px; 
+        display: inline-block;
+        padding: 8px 16px;
         font-size: 0.9rem;
-        text-decoration: none; 
+        text-decoration: none;
     }
-
 
     #about {
         flex-direction: column;
@@ -1073,5 +1072,40 @@ footer .info a:hover {
     footer .info p {
         justify-content: center;
         font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .desktop-menu ul {
+        flex-direction: column; /* Força todos os itens em coluna vertical */
+        align-items: center; /* Centraliza horizontalmente cada item */
+        gap: 12px; /* Aumenta o gap vertical para melhor espaçamento (ajuste se quiser) */
+        width: 100%; /* Garante que ocupe toda a largura disponível */
+    }
+    .desktop-menu ul li {
+        width: 100%; /* Cada <li> ocupa a largura total, centralizando o <a> */
+        text-align: center; /* Centraliza o texto do link */
+    }
+    .desktop-menu ul li a {
+        display: block; /* Muda de inline-block para block, para ocupar a largura do <li> */
+        width: 100%; /* O link ocupa toda a largura do <li> */
+        max-width: 200px; /* Limita a largura máxima para não ficar muito largo em telas maiores dentro desse range */
+        margin: 0 auto; /* Centraliza o link horizontalmente */
+        padding: 10px 16px; /* Aumenta um pouco o padding vertical para melhor toque em mobile */
+        font-size: 0.95rem; /* Ligeiro aumento no font para legibilidade */
+        box-sizing: border-box; /* Inclui padding na largura */
+    }
+    /* Ajuste opcional: Reduz o gap do .menu se o menu ficar muito alto */
+    .menu {
+        gap: 15px; /* Reduz de 20px para compactar um pouco */
+        padding: 15px; /* Reduz padding horizontal se necessário */
+    }
+    /* Garante que o user não transborde em telas muito pequenas */
+    .user {
+        min-width: 120px; /* Reduz de 140px para caber melhor */
+        padding: 6px 12px; /* Padding menor */
+    }
+    .user p {
+        font-size: 0.9rem; /* Ligeiro redução para caber texto longo */
     }
 }
