@@ -32,7 +32,7 @@ Route::post('/cadastro', function (Request $request) {
     $usuario = Usuario::create(compact('nome', 'email', 'telefone'));
 
     Mail::to($usuario->email)->send(new \App\Mail\WelcomeEmail($usuario));
-    
+
     return redirect()->route('entrar')->with('mensagem', 'Cadastro realizado com sucesso! Faça login para continuar.');
 })->name('cadastro.submit');
 
@@ -65,7 +65,19 @@ Route::get('/alunos', fn() => view('userPages.alunos'))->name('user.alunos');
 
 // Checkout
 Route::get('/checkout', function () {
-    return view('checkout');
+    $usuario = session('usuario');
+    return view('userPages.checkout', [
+        'produtos' => Produto::all(),
+        'usuario' => $usuario,
+    ]);
+})->name('user.checkout');
+
+Route::prefix('/pagamento')->group(function () {
+    Route::get('/checkout', [PagamentoController::class, 'checkout'])->name('checkout.pagamento'); // tela de pagamento
+    Route::post('/processar', [PagamentoController::class, 'processar'])->name('processar.pagamento'); // processar o pagamento
+    Route::get('/sucesso', [PagamentoController::class, 'sucesso'])->name('sucesso.pagamento');
+    Route::get('/falha', [PagamentoController::class, 'falha'])->name('falha.pagamento');
+    Route::get('/pendente', [PagamentoController::class, 'pendente'])->name('pendente.pagamento');
 });
 
 //rota página admin

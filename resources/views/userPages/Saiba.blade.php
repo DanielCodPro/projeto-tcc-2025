@@ -177,6 +177,8 @@
             <p class="text-sm mb-2">Copyright 2025 <span class="text-orange-400">Casa dos Salgados</span> Todos Direitos
                 Reservados </p>
             <p class="text-sm mb-1">Tel: (19)99635-9428</p>
+            <a class="text-sm" href="{{ url('https://www.facebook.com/casadossalgadosMM/?locale=pt_BR') }}">
+                Facebook</a>
             <p class="text-sm">E-mail: casadossalgadosmm@hotmail.com.br</p>
         </div>
     </footer>

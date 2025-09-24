@@ -26,28 +26,25 @@
 <body class="font-poppins min-h-screen text-cinza1 bg-pattern">
 
     <!-- Header/Menu -->
-    <header
-        class="bg-white/90 shadow-lg rounded-b-3xl px-6 py-4 flex flex-col md:flex-row md:justify-between md:items-center gap-4 md:gap-0 backdrop-blur-sm z-10">
-        <a href="/index" class="flex items-center gap-4">
+    <header class="sticky top-0 z-50 bg-white shadow-md px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
             <img src="/images/logo.png" alt="Logo"
-                class="w-16 h-16 md:w-20 md:h-20 rounded-full border-4 border-gray-10 shadow-lg bg-white object-cover">
+                class="w-14 h-14 rounded-full border-2 border-gray-200 shadow bg-white object-cover">
             <div>
-                <h1 class="text-3xl md:text-4xl font-extrabold tracking-wide drop-shadow">Casa dos
-                    Salgados
-                </h1>
-                <span class="block text-cinza2 text-sm md:text-base font-medium mt-1">Sabor e tradição em cada
-                    mordida</span>
+                <h1 class="text-2xl font-extrabold tracking-wide text-gray-800">Casa dos Salgados</h1>
+                <span class="block text-gray-500 text-xs font-medium">Sabor e tradição em cada mordida</span>
             </div>
-        </a>
-        <nav class="flex items-center gap-6">
+        </div>
+        <nav>
             <a href="/index"
                 class="text-white font-semibold px-4 py-2 rounded-full bg-gray-400 hover:bg-orange-400 transition-colors shadow">
-                <i class="fas fa-home mr-2"></i>Voltar à Página Inicial
+                <i class="fa fa-home" aria-hidden="true"></i>Voltar
             </a>
         </nav>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 md:px-8 py-10 flex flex-col lg:flex-row gap-10">
+    <!-- Conteúdo -->
+    <main id="conteudo" class="max-w-7xl mx-auto px-4 md:px-8 py-10 flex flex-col lg:flex-row gap-10 transition-all">
 
         <!-- Cardápio -->
         <section class="flex-1">
@@ -59,7 +56,8 @@
             <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 @forelse ($produtos->where('tipo', 'frito') as $produto)
                     <li
-                        class="bg-white/95 p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all flex flex-col items-center border border-orange-100 h-full">
+                        class="bg-orange-50 p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all flex flex-col items-center border border-orange-200 h-full">
+
                         @if ($produto->imagem)
                             <img src="{{ asset('storage/' . $produto->imagem) }}" alt="{{ $produto->nome }}"
                                 class="w-28 h-28 object-cover rounded-full border-4 border-laranja shadow mb-4">
@@ -81,9 +79,10 @@
 
                         <div class="flex flex-col justify-end mt-auto w-full">
                             <div class="flex items-center justify-between mt-4 gap-2">
-                                <input type="number" min="1" value="1"
+                                <input type="number" min="20" value="20"
                                     class="quantidade w-16 text-center border border-gray-300 rounded-full px-2 py-1 text-sm" />
-                                <button onclick="adicionarProduto(this, '{{ $produto->nome }}', {{ $produto->preco }})"
+                                <button
+                                    onclick="adicionarProduto(this, '{{ $produto->nome }}', {{ $produto->preco }}, '{{ $produto->tipo }}')"
                                     class="flex-1 bg-gray-400 hover:bg-orange-400 hover:text-white border-2 border-gray-100 text-white px-4 py-2 rounded-full font-bold shadow transition-all text-sm">
                                     <i class="fas fa-cart-plus mr-2"></i>Adicionar
                                 </button>
@@ -100,7 +99,8 @@
             <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 @forelse ($produtos->where('tipo', 'assado') as $produto)
                     <li
-                        class="bg-white/95 p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all flex flex-col items-center border border-orange-100 h-full">
+                        class="bg-orange-50 p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all flex flex-col items-center border border-orange-200 h-full">
+
                         @if ($produto->imagem)
                             <img src="{{ asset('storage/' . $produto->imagem) }}" alt="{{ $produto->nome }}"
                                 class="w-28 h-28 object-cover rounded-full border-4 border-laranja shadow mb-4">
@@ -137,36 +137,38 @@
             </ul>
 
             <!-- Seção Bebidas -->
-            <h3 class="text-2xl font-bold text-cinza2 mb-6 mt-12 border-l-4 border-orange-400 pl-4">Bebidas</h3>
-            <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <h3 class="text-xl md:text-2xl font-bold text-cinza2 mb-4 mt-10 border-l-4 border-orange-400 pl-3">Bebidas
+            </h3>
+            <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 @forelse ($produtos->where('tipo', 'bebida') as $produto)
                     <li
-                        class="bg-white/95 p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all flex flex-col items-center border border-orange-100 h-full">
+                        class="bg-orange-50 p-4 md:p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all flex flex-col items-center border border-orange-200 h-full">
+
                         @if ($produto->imagem)
-                            <img src="{{ asset('storage/' . $produto->imagem) }}" alt="{{ $produto->nome }}"
-                                class="w-28 h-28 object-cover rounded-full border-4 border-laranja shadow mb-4">
+                            <img src="{{ asset("storage/{$produto->imagem}") }}" alt="{{ $produto->nome }}"
+                                class="w-24 h-24 md:w-28 md:h-28 object-cover rounded-full border-4 border-laranja shadow mb-3">
                         @else
                             <div
-                                class="w-28 h-28 flex items-center justify-center bg-gray-100 rounded-full border-4 border-gray-200 mb-4 text-gray-400">
-                                <i class="fas fa-utensils text-3xl"></i>
+                                class="w-24 h-24 md:w-28 md:h-28 flex items-center justify-center bg-gray-100 rounded-full border-4 border-gray-200 mb-3 text-gray-400">
+                                <i class="fas fa-utensils text-2xl md:text-3xl"></i>
                             </div>
                         @endif
 
-                        <h3 class="text-xl font-bold text-laranja mb-1 text-center">{{ $produto->nome }}</h3>
-                        <p class="text-gray-700 font-semibold text-lg mb-1">R$
+                        <h3 class="text-lg md:text-xl font-bold text-laranja mb-1 text-center">{{ $produto->nome }}</h3>
+                        <p class="text-gray-700 font-semibold text-base md:text-lg mb-1">R$
                             {{ number_format($produto->preco, 2, ',', '.') }}
                         </p>
 
                         @if ($produto->descricao)
-                            <p class="text-sm text-gray-500 mb-2 text-center">{{ $produto->descricao }}</p>
+                            <p class="text-xs md:text-sm text-gray-500 mb-2 text-center">{{ $produto->descricao }}</p>
                         @endif
 
                         <div class="flex flex-col justify-end mt-auto w-full">
-                            <div class="flex items-center justify-between mt-4 gap-2">
+                            <div class="flex items-center justify-between mt-3 gap-2">
                                 <input type="number" min="1" value="1"
-                                    class="quantidade w-16 text-center border border-gray-300 rounded-full px-2 py-1 text-sm" />
+                                    class="quantidade w-14 md:w-16 text-center border border-gray-300 rounded-full px-2 py-1 text-xs md:text-sm" />
                                 <button onclick="adicionarProduto(this, '{{ $produto->nome }}', {{ $produto->preco }})"
-                                    class="flex-1 bg-gray-400 hover:bg-orange-400 hover:text-white border-2 border-gray-100 text-white px-4 py-2 rounded-full font-bold shadow transition-all text-sm">
+                                    class="flex-1 bg-gray-400 hover:bg-orange-400 hover:text-white border-2 border-gray-100 text-white px-3 md:px-4 py-2 rounded-full font-bold shadow transition-all text-xs md:text-sm">
                                     <i class="fas fa-cart-plus mr-2"></i>Adicionar
                                 </button>
                             </div>
@@ -177,26 +179,36 @@
                 @endforelse
             </ul>
         </section>
-
-        <!-- Carrinho (fixo em telas grandes) -->
-        <aside class="lg:w-96 w-full lg:sticky lg:top-20">
-            <section class="mb-14 bg-white/95 p-8 rounded-3xl shadow-xl border border-orange-100">
-                <h2 class="text-2xl font-bold text-laranja mb-4 text-center"><i
-                        class="fas fa-shopping-cart mr-2"></i>Carrinho de Compras</h2>
-                <ul id="carrinho" class="space-y-3 text-base">
-                </ul>
-                <div class="flex justify-between items-center mt-6">
-                    <p id="total" class="text-xl font-extrabold text-green-600">Total: R$ 0,00</p>
-                    <button onclick="limparCarrinho()" class="text-sm text-red-500 hover:underline font-semibold">Limpar
-                        Carrinho</button>
-                </div>
-            </section>
-            <a href="/checkout"
-                class="block w-full text-cinza2 border-2 border-cinza2 px-8 py-4 rounded-full font-bold hover:bg-cinza2 hover:text-orange-400 transition-all text-lg text-center">
-                <i class="fas fa-home mr-2"></i>Checar Pedido
-            </a>
-        </aside>
     </main>
+
+    <!-- Footer Carrinho -->
+    <footer id="footerCarrinho"
+        class="fixed bottom-0 left-0 w-full bg-white border-t-4 border-orange-400 shadow-lg z-40 max-h-[45vh] overflow-y-auto">
+        <div class="max-w-6xl mx-auto px-6 py-5 flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+
+            <!-- Lista do Carrinho -->
+            <div class="flex-1">
+                <div class="flex items-center gap-2 mb-3">
+                    <i class="fas fa-shopping-cart text-orange-500 text-xl"></i>
+                    <h2 class="text-lg md:text-xl font-bold text-orange-600">Seu Carrinho</h2>
+                </div>
+                <ul id="carrinho" class="divide-y divide-gray-200 text-base max-h-[25vh] overflow-y-auto pr-2"></ul>
+            </div>
+
+            <!-- Total e Ações -->
+            <div class="flex flex-col md:items-end justify-between gap-4 min-w-[260px]">
+                <p id="total" class="text-2xl font-extrabold text-green-600 whitespace-nowrap">Total: R$ 0,00</p>
+                <div class="flex flex-wrap md:flex-nowrap gap-3 w-full md:w-auto">
+                    <button onclick="limparCarrinho()"
+                        class="text-sm font-semibold text-red-500 hover:text-red-600 hover:underline transition">Limpar</button>
+                    <a href="/checkout"
+                        class="flex items-center justify-center gap-2 px-6 py-2 rounded-full font-bold text-white bg-orange-500 hover:bg-orange-600 shadow-md transition-all">
+                        <i class="fas fa-receipt"></i> Finalizar Pedido
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script>
@@ -258,19 +270,37 @@
                 checkoutBtn.classList.remove('opacity-50', 'pointer-events-none');
             }
         }
-        function adicionarProduto(btn, nome, preco) {
+
+        function adicionarProduto(btn, nome, preco, tipo) {
             const input = btn.parentElement.querySelector('.quantidade');
-            const quantidade = parseInt(input.value) || 1;
+            const quantidade = parseInt(input.value);
             adicionarAoCarrinho(nome, preco, quantidade);
-            input.value = 1; // Reseta o campo de quantidade após adicionar
+            if (tipo === 'frito') {
+                input.value = 20; // Reseta para 20 se for frito
+            } else {
+                input.value = 1; // Reseta para 1 se não for frito
+            }
         }
 
-        window.onload = atualizarCarrinho;
+        // 🔑 Ajusta espaço inferior dinamicamente conforme altura do footer
+        function ajustarEspaco() {
+            const footer = document.getElementById("footerCarrinho");
+            const main = document.getElementById("conteudo");
+            if (footer && main) {
+                const alturaFooter = footer.offsetHeight;
+                main.style.paddingBottom = alturaFooter + 30 + "px"; // 30px extra de respiro
+            }
+        }
+
+        window.onload = () => {
+            atualizarCarrinho();
+            ajustarEspaco();
+        };
+        window.onresize = ajustarEspaco;
     </script>
 
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/a2d5f8eafd.js" crossorigin="anonymous"></script>
-    </div>
 </body>
 
 </html>
