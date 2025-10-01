@@ -21,7 +21,9 @@ class UsuarioController extends Controller
 
         if ($usuario) {
             // Usuário já cadastrado
-            return redirect()->route('index')->with('mensagem', 'Login realizado com sucesso!');
+            // loga automaticamente e redireciona
+            session(['usuario_id' => $usuario->id]);
+            return redirect()->route('user.index')->with('mensagem', 'Login realizado com sucesso!');
         }
 
         // Novo usuário
@@ -30,6 +32,10 @@ class UsuarioController extends Controller
             'email' => $request->email,
             'telefone' => $request->telefone,
         ]);
+
+        // opcional: logar automaticamente após cadastro
+        session(['usuario_id' => $novoUsuario->id]);
+        
         // Redireciona após cadastro
         return redirect()->route('user.entrar')->with('mensagem', 'Cadastro realizado com sucesso!');
     }
