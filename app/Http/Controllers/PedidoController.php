@@ -64,11 +64,12 @@ class PedidoController extends Controller
             session()->put('pedido_id', $pedido->id); 
 
             if ($tipoPedido === 'delivery') {
-                return redirect()->route('checkout.pagamento')
+                return redirect()->route('preferencia.pagamento')
                     ->with('success', 'Pedido realizado! Faça o pagamento.');
             } else {
                 return redirect()->route('user.index')
                     ->with('success', 'Pedido realizado com sucesso! Aguarde na sua mesa.');
+
             }
 
         } catch (\Exception $e) {
