@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7e4ec68e5a7509963253fb958b749909",
+    "content-hash": "1198e4336bce41f58d90cbec0e6ac380",
     "packages": [
         {
             "name": "brick/math",
@@ -2148,16 +2148,16 @@
         },
         {
             "name": "mercadopago/dx-php",
-            "version": "3.5.0",
+            "version": "3.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mercadopago/sdk-php.git",
-                "reference": "96687972b68ee1e5af875b3e3d6109c04f136bca"
+                "reference": "1805d569d427c6f96baf71a18144193a64872904"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mercadopago/sdk-php/zipball/96687972b68ee1e5af875b3e3d6109c04f136bca",
-                "reference": "96687972b68ee1e5af875b3e3d6109c04f136bca",
+                "url": "https://api.github.com/repos/mercadopago/sdk-php/zipball/1805d569d427c6f96baf71a18144193a64872904",
+                "reference": "1805d569d427c6f96baf71a18144193a64872904",
                 "shasum": ""
             },
             "require": {
@@ -2181,9 +2181,9 @@
             "description": "Mercado Pago PHP SDK",
             "homepage": "https://github.com/mercadopago/sdk-php",
             "support": {
-                "source": "https://github.com/mercadopago/sdk-php/tree/3.5.0"
+                "source": "https://github.com/mercadopago/sdk-php/tree/3.7.0"
             },
-            "time": "2025-06-03T14:30:15+00:00"
+            "time": "2025-09-10T18:05:07+00:00"
         },
         {
             "name": "monolog/monolog",

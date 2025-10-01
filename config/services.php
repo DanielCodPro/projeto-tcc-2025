@@ -36,5 +36,8 @@ return [
     'client_secret' => env('GOOGLE_CLIENT_SECRET'),
     'redirect' => env('GOOGLE_REDIRECT_URI'),
 ],
-
+    'mercadopago' => [
+    'public_key' => env('MERCADO_PAGO_PUBLIC_KEY'),
+    'access_token' => env('MERCADO_PAGO_ACCESS_TOKEN'),
+],
 ];
