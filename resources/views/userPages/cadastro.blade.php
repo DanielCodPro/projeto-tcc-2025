@@ -111,7 +111,7 @@
       </form>
       <div class="flex items-center justify-center mt-6 text-sm">
         <span class="text-gray-600">Já tem uma conta?</span>
-        <a href="{{ route('entrar') }}" class="text-yellow-600 font-semibold ml-2 hover:underline">Entrar</a>
+        <a href="{{ route('user.entrar') }}" class="text-yellow-600 font-semibold ml-2 hover:underline">Entrar</a>
       </div>
     </div>
   </div>

@@ -19,7 +19,7 @@ class GoogleController extends Controller
     public function handleGoogleCallback()
     {
 
-        $googleUser = Socialite::driver('google')->stateless()->user(); //permanecer utilizando o modo stateless, pois é necessário para evitar problemas de sessão em ambientes de produção(mas n é recomendado para ambientes de produção, pois pode causar problemas de segurança se não for bem gerenciado)
+        $googleUser = Socialite::driver('google')->stateless()->user(); //permanecer utilizando o modo stateless, pois é necessário para evitar problemas de sessão em ambientes de desenvolvimento(mas n é recomendado para ambientes de produção, pois pode causar problemas de segurança se não for bem gerenciado)
 
 
         $usuario = Usuario::where('email', $googleUser->getEmail())->first();
