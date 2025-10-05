@@ -19,7 +19,7 @@ class AdminMiddleware
         $usuarioId = session('usuario_id');
 
         if (!$usuarioId) {
-            return redirect()->route('entrar')->with('mensagem', 'Acesso restrito.');
+            return redirect()->route('user.entrar')->with('mensagem', 'Acesso restrito.');
         }
 
         $usuario = Usuario::find($usuarioId);
