@@ -1,7 +1,7 @@
 # 🚀 Projeto Laravel
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20Logo%20Vertical/1%20Logo%20Vertical%20-%20Black.svg" width="150" alt="Laravel Logo">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/250px-Laravel.svg.png" width="150" alt="Laravel Logo">
 </p>
 
 <p align="center">
